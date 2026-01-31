@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化学基礎マスター：物質の構成</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Mascot Container -->
+    <div id="denshi-kun" class="denshi-container normal">
+        <div class="denshi-body">
+            <div class="denshi-face">
+                <div class="denshi-eye left"></div>
+                <div class="denshi-eye right"></div>
+                <div class="denshi-mouth"></div>
+            </div>
+            <div class="denshi-accessories">
+                <!-- Crown, sparkles, electrons injected via CSS or inner HTML if needed -->
+                <div class="crown"></div>
+                <div class="sparkles"></div>
+                <div class="orbit-container">
+                    <div class="orbit-electron e1"></div>
+                    <div class="orbit-electron e2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app">
+        <!-- Title Screen -->
+        <section id="title-screen" class="screen active">
+            <h1 class="main-title">化学基礎マスター<br><span class="subtitle">物質の構成</span></h1>
+            <div class="mascot-container" id="title-mascot">
+                <!-- Dynamic SVG decoration can go here -->
+            </div>
+            <div class="start-options">
+                <button id="start-10-btn" class="main-btn">10問に挑戦</button>
+                <button id="start-20-btn" class="main-btn">20問に挑戦</button>
+            </div>
+            <button id="collection-btn" class="sub-btn">称号図鑑</button>
+        </section>
+
+        <!-- Quiz Screen -->
+        <section id="quiz-screen" class="screen hidden">
+            <div class="quiz-header">
+                <div class="progress-container">
+                    <span id="progress-text">Q. 1/20</span>
+                    <div class="progress-bar-bg">
+                        <div id="progress-bar" class="progress-bar-fill"></div>
+                    </div>
+                </div>
+                <!-- Retry indicator will appear here if in retry mode -->
+                <div id="retry-badge" class="retry-badge hidden">解き直しモード</div>
+            </div>
+
+            <div class="question-container">
+                <div id="question-text" class="question-text">ここに問題文が表示されます</div>
+                <div id="visual-area" class="visual-area"></div>
+            </div>
+
+            <div id="options-container" class="options-grid">
+                <!-- Options will be injected here -->
+            </div>
+
+            <div id="feedback-overlay" class="feedback-overlay hidden">
+                <div class="feedback-content">
+                    <div id="feedback-icon" class="feedback-icon"></div>
+                    <div id="feedback-text" class="feedback-text"></div>
+                    <p id="explanation-text" class="explanation-text"></p>
+                    <button id="next-btn" class="next-btn">次へ</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Result Screen -->
+        <section id="result-screen" class="screen hidden">
+            <h2>結果発表</h2>
+            <div class="result-stats">
+                <div class="stat-item">
+                    <span class="stat-label">初回正解数</span>
+                    <span id="score-val" class="stat-value">0/20</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">クリアタイム</span>
+                    <span id="time-val" class="stat-value">00:00</span>
+                </div>
+            </div>
+            <div id="new-title-container" class="new-title-container hidden">
+                <p class="new-title-label">NEW TITLE!</p>
+                <div id="new-title-display" class="title-card"></div>
+            </div>
+            <button id="retry-btn" class="main-btn">もう一度遊ぶ</button>
+            <button id="home-btn" class="sub-btn">タイトルへ</button>
+        </section>
+
+        <!-- Collection Screen -->
+        <section id="collection-screen" class="screen hidden">
+            <div class="collection-header">
+                <h2>称号図鑑</h2>
+                <button id="back-btn" class="icon-btn">✕</button>
+            </div>
+            <div id="collection-grid" class="collection-grid">
+                <!-- Titles injected here -->
+            </div>
+        </section>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/visuals.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

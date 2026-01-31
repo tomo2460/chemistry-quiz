@@ -1,0 +1,698 @@
+:root {
+    --primary: #8ac6d1;
+    /* Pastel Blue */
+    --primary-dark: #6ba8b4;
+    --secondary: #ffb7b2;
+    /* Pastel Red/Pink */
+    --accent: #ffdac1;
+    /* Pastel Orange */
+    --bg-color: #f6fbf4;
+    /* Very light mint/white */
+    --text-color: #444;
+    --white: #ffffff;
+    --correct: #b5ead7;
+    /* Pastel Green */
+    --wrong: #ff9aa2;
+    /* Pastel Red */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --font-main: 'M PLUS Rounded 1c', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#app {
+    width: 100%;
+    max-width: 480px;
+    /* Mobile focused max width */
+    height: 100%;
+    background: var(--white);
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 481px) {
+    #app {
+        height: 90vh;
+        border-radius: 20px;
+        border: 4px solid var(--primary);
+    }
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    background: var(--white);
+    overflow-y: auto;
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Typography */
+h1 {
+    text-align: center;
+    color: var(--primary-dark);
+    margin-top: 40px;
+    font-size: 2rem;
+    line-height: 1.4;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    font-weight: normal;
+}
+
+/* Buttons */
+.main-btn,
+.sub-btn,
+.next-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-main);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+/* New: Start Options Container */
+.start-options {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.main-btn {
+    background-color: var(--primary);
+    color: var(--white);
+    box-shadow: 0 4px 0 var(--primary-dark);
+}
+
+.main-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.sub-btn {
+    background-color: var(--accent);
+    color: #665c54;
+    box-shadow: 0 4px 0 #e0bb9e;
+}
+
+.sub-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+/* Title Screen */
+#title-screen {
+    justify-content: center;
+    align-items: center;
+}
+
+.mascot-container {
+    height: 200px;
+    width: 200px;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Quiz Screen */
+.quiz-header {
+    margin-bottom: 20px;
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 10px;
+    background: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.retry-badge {
+    background: var(--secondary);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.question-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.question-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.visual-area {
+    width: 100%;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Atom Visuals */
+.atom-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.nucleus {
+    width: 30px;
+    height: 30px;
+    background: var(--primary-dark);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    z-index: 2;
+}
+
+.shell {
+    border: 1px dashed #aaa;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.electron {
+    width: 8px;
+    height: 8px;
+    background: var(--secondary);
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.option-btn {
+    background: var(--white);
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    padding: 15px 10px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.option-btn:hover {
+    background: #eef9fb;
+}
+
+/* Feedback Overlay */
+.feedback-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    flex-direction: column;
+}
+
+.feedback-content {
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+}
+
+.feedback-icon {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.feedback-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.feedback-correct {
+    color: var(--primary);
+}
+
+.feedback-wrong {
+    color: var(--secondary);
+}
+
+.explanation-text {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-align: left;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.next-btn {
+    background: var(--primary);
+    color: white;
+}
+
+/* Result Screen */
+.result-stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+    width: 100%;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-dark);
+}
+
+.title-card {
+    border: 2px solid var(--accent);
+    background: #fff8f0;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Collection Screen */
+.collection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.collection-item {
+    padding: 15px;
+    border-radius: 10px;
+    background: #f0f0f0;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.collection-item.unlocked {
+    background: var(--white);
+    border: 2px solid var(--primary);
+    color: var(--text-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.collection-icon {
+    font-size: 1.5rem;
+}
+
+/* Animation for Title Screen Mascot */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.mascot-container {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Mascot: Denshi-kun (Fixed Position) */
+.denshi-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 70px;
+    height: 70px;
+    z-index: 100;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Body Base */
+.denshi-body {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, #a2d9ff, #4a90e2);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease;
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Face */
+.denshi-face {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+.denshi-eye {
+    position: absolute;
+    top: 35%;
+    width: 8px;
+    height: 8px;
+    background: #333;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.denshi-eye.left {
+    left: 25%;
+}
+
+.denshi-eye.right {
+    right: 25%;
+}
+
+.denshi-mouth {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+/* State: Normal (Default) */
+.denshi-container.normal .denshi-eye {
+    height: 4px;
+    /* Sleepy/Normal */
+    top: 38%;
+}
+
+/* State: Happy */
+.denshi-container.happy .denshi-body {
+    background: radial-gradient(circle at 30% 30%, #b3e5fc, #29b6f6);
+    /* Brighter Blue */
+    transform: scale(1.1);
+}
+
+.denshi-container.happy .denshi-eye {
+    height: 10px;
+    width: 10px;
+    top: 32%;
+    border-radius: 50%;
+}
+
+/* Smile */
+.denshi-container.happy .denshi-mouth {
+    width: 14px;
+    height: 8px;
+    background: transparent;
+    border-bottom: 3px solid #333;
+    border-radius: 50%;
+}
+
+/* Sparkles */
+.denshi-container.happy .sparkles::before,
+.denshi-container.happy .sparkles::after {
+    content: '✨';
+    position: absolute;
+    font-size: 16px;
+    animation: sparkle-anim 1s infinite alternate;
+}
+
+.denshi-container.happy .sparkles::before {
+    top: -10px;
+    right: -5px;
+}
+
+.denshi-container.happy .sparkles::after {
+    bottom: -5px;
+    left: -10px;
+    animation-delay: 0.5s;
+}
+
+@keyframes sparkle-anim {
+    0% {
+        opacity: 0.2;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* State: Evolved (Gold Nucleus) */
+.denshi-container.evolved .denshi-body {
+    background: radial-gradient(circle at 30% 30%, #ffd700, #ffaa00);
+    /* Gold */
+    box-shadow: 0 0 15px #ffd700;
+    transform: scale(1.2);
+}
+
+.denshi-container.evolved .denshi-eye {
+    background: #5d4037;
+    height: 10px;
+    width: 10px;
+    top: 35%;
+}
+
+.denshi-container.evolved .denshi-mouth {
+    width: 16px;
+    height: 10px;
+    background: transparent;
+    border-bottom: 3px solid #5d4037;
+    border-radius: 50%;
+}
+
+/* Crown */
+.crown {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.denshi-container.evolved .crown {
+    opacity: 1;
+}
+
+.denshi-container.evolved .crown::before {
+    content: '👑';
+    font-size: 30px;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* Orbiting Electrons */
+.orbit-container {
+    display: none;
+}
+
+.denshi-container.evolved .orbit-container {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    pointer-events: none;
+}
+
+.orbit-electron {
+    width: 8px;
+    height: 8px;
+    background: #03a9f4;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -4px;
+    margin-left: -4px;
+}
+
+.e1 {
+    animation: orbit1 1.5s linear infinite;
+}
+
+.e2 {
+    animation: orbit2 2s linear infinite reverse;
+}
+
+@keyframes orbit1 {
+    from {
+        transform: rotate(0deg) translateX(40px) rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg) translateX(40px) rotate(-360deg);
+    }
+}
+
+@keyframes orbit2 {
+    from {
+        transform: rotate(0deg) translateX(30px) rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg) translateX(30px) rotate(-360deg);
+    }
+}
+
+/* Hide or adjust on very small screens if needed, though user asked for fixed top right */
+@media (max-width: 320px) {
+    .denshi-container {
+        transform: scale(0.7);
+        top: 5px;
+        right: 5px;
+        transform-origin: top right;
+    }
+}
