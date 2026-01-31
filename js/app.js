@@ -262,12 +262,8 @@ const App = {
 
         App.state.userProgress.playHistory.totalPlays++;
 
-        const isPerfect = App.state.correctCount === App.state.targetQuestionCount;
-        if (isPerfect) {
-            App.updateMascot('evolved');
-        } else {
-            App.updateMascot('normal');
-        }
+        // Always evolve at the end if cleared (Retries are enforced before endQuiz)
+        App.updateMascot('evolved');
 
         // Count retries total (sum of all question retries)
         let totalRetries = 0;
