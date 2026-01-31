@@ -594,6 +594,494 @@ const QUESTION_DATA = [
         options: ["メンデレーエフ", "ドルトン", "アボガドロ", "ボーア"],
         correctIndex: 0,
         explanation: "元素の性質を整理し、未発見元素の予言も行いました。"
+    },
+
+    // --- 追加問題: 元素記号と名称 (Elements) ---
+    {
+        id: 101,
+        text: "元素記号「K」の名称は？",
+        type: "text",
+        options: ["カリウム", "カルシウム", "クリプトン", "銅"],
+        correctIndex: 0,
+        explanation: "カリウム(Potassium)はドイツ語のKaliumに由来します。"
+    },
+    {
+        id: 102,
+        text: "「銅」の元素記号は？",
+        type: "text",
+        options: ["Cu", "Co", "Cr", "C"],
+        correctIndex: 0,
+        explanation: "Cuprumに由来します。"
+    },
+    {
+        id: 103,
+        text: "元素記号「Ag」の名称は？",
+        type: "text",
+        options: ["銀", "金", "アルゴン", "水銀"],
+        correctIndex: 0,
+        explanation: "Argentumに由来します。"
+    },
+    {
+        id: 104,
+        text: "「金」の元素記号は？",
+        type: "text",
+        options: ["Au", "Ag", "Al", "Ar"],
+        correctIndex: 0,
+        explanation: "Aurumに由来します。"
+    },
+    {
+        id: 105,
+        text: "元素記号「Zn」の名称は？",
+        type: "text",
+        options: ["亜鉛", "スズ", "ジルコニウム", "ニッケル"],
+        correctIndex: 0,
+        explanation: "Zincです。"
+    },
+    {
+        id: 106,
+        text: "「硫黄」の元素記号は？",
+        type: "text",
+        options: ["S", "Si", "Sr", "Sn"],
+        correctIndex: 0,
+        explanation: "SulfurのSです。"
+    },
+    {
+        id: 107,
+        text: "元素記号「Fe」の名称は？",
+        type: "text",
+        options: ["鉄", "フッ素", "フェルミウム", "フランシウム"],
+        correctIndex: 0,
+        explanation: "Ferrumに由来します。"
+    },
+    {
+        id: 108,
+        text: "「鉛」の元素記号は？",
+        type: "text",
+        options: ["Pb", "P", "Pd", "Pt"],
+        correctIndex: 0,
+        explanation: "Plumbumに由来します。"
+    },
+    {
+        id: 109,
+        text: "元素記号「Hg」の名称は？",
+        type: "text",
+        options: ["水銀", "銀", "水素", "マグネシウム"],
+        correctIndex: 0,
+        explanation: "Hydrargyrum（水の銀）に由来します。"
+    },
+    {
+        id: 110,
+        text: "「スズ」の元素記号は？",
+        type: "text",
+        options: ["Sn", "S", "Sb", "Sr"],
+        correctIndex: 0,
+        explanation: "Stannumに由来します。"
+    },
+    {
+        id: 111,
+        text: "元素記号「Si」の名称は？",
+        type: "text",
+        options: ["ケイ素", "硫黄", "スカンジウム", "銀"],
+        correctIndex: 0,
+        explanation: "Siliconです。"
+    },
+    {
+        id: 112,
+        text: "「マンガン」の元素記号は？",
+        type: "text",
+        options: ["Mn", "Mg", "Mo", "Mt"],
+        correctIndex: 0,
+        explanation: "Manganeseです。"
+    },
+    {
+        id: 113,
+        text: "元素記号「Br」の名称は？",
+        type: "text",
+        options: ["臭素", "ホウ素", "ベリリウム", "バリウム"],
+        correctIndex: 0,
+        explanation: "Bromineです。"
+    },
+    {
+        id: 114,
+        text: "「ヨウ素」の元素記号は？",
+        type: "text",
+        options: ["I", "In", "Ir", "Y"],
+        correctIndex: 0,
+        explanation: "Iodineです。"
+    },
+    {
+        id: 115,
+        text: "元素記号「Ba」の名称は？",
+        type: "text",
+        options: ["バリウム", "ベリリウム", "ホウ素", "ビスマス"],
+        correctIndex: 0,
+        explanation: "Bariumです。"
+    },
+    {
+        id: 116,
+        text: "「白金」の元素記号は？",
+        type: "text",
+        options: ["Pt", "Pb", "Pd", "Pu"],
+        correctIndex: 0,
+        explanation: "Platinumです。"
+    },
+
+    // --- 追加問題: イオン式と名称 (Ions) ---
+    {
+        id: 117,
+        text: "イオン式「NH4+」の名称は？",
+        type: "text",
+        options: ["アンモニウムイオン", "アンモニア", "硝酸イオン", "水素イオン"],
+        correctIndex: 0,
+        explanation: "多原子陽イオンの代表例です。"
+    },
+    {
+        id: 118,
+        text: "「水酸化物イオン」のイオン式は？",
+        type: "text",
+        options: ["OH-", "H3O+", "O2-", "H-"],
+        correctIndex: 0,
+        explanation: "酸素と水素からなる1価の陰イオンです。"
+    },
+    {
+        id: 119,
+        text: "イオン式「NO3-」の名称は？",
+        type: "text",
+        options: ["硝酸イオン", "亜硝酸イオン", "窒化物イオン", "アンモニウムイオン"],
+        correctIndex: 0,
+        explanation: "硝酸(HNO3)が電離して生じます。"
+    },
+    {
+        id: 120,
+        text: "「硫酸イオン」のイオン式は？",
+        type: "text",
+        options: ["SO4 2-", "SO3 2-", "S 2-", "HSO4-"],
+        correctIndex: 0,
+        explanation: "硫酸(H2SO4)から水素イオンが2つ取れた陰イオンです。"
+    },
+    {
+        id: 121,
+        text: "イオン式「CO3 2-」の名称は？",
+        type: "text",
+        options: ["炭酸イオン", "炭酸水素イオン", "酢酸イオン", "シュウ酸イオン"],
+        correctIndex: 0,
+        explanation: "炭酸(H2CO3)の2価の陰イオンです。"
+    },
+    {
+        id: 122,
+        text: "「リン酸イオン」のイオン式は？",
+        type: "text",
+        options: ["PO4 3-", "PO3 3-", "P 3-", "HPO4 2-"],
+        correctIndex: 0,
+        explanation: "リン酸(H3PO4)の3価の陰イオンです。"
+    },
+    {
+        id: 123,
+        text: "イオン式「CH3COO-」の名称は？",
+        type: "text",
+        options: ["酢酸イオン", "ギ酸イオン", "シュウ酸イオン", "炭酸イオン"],
+        correctIndex: 0,
+        explanation: "酢酸(CH3COOH)からH+が取れたものです。"
+    },
+    {
+        id: 124,
+        text: "「塩化物イオン」のイオン式は？",
+        type: "text",
+        options: ["Cl-", "ClO-", "ClO3-", "C-"],
+        correctIndex: 0,
+        explanation: "塩素原子が電子を1個受け取ったものです。"
+    },
+    {
+        id: 125,
+        text: "イオン式「Ca 2+」の名称は？",
+        type: "text",
+        options: ["カルシウムイオン", "カリウムイオン", "銅イオン", "炭素イオン"],
+        correctIndex: 0,
+        explanation: "カルシウムは2族元素なので2価の陽イオンになります。"
+    },
+    {
+        id: 126,
+        text: "「アルミニウムイオン」のイオン式は？",
+        type: "text",
+        options: ["Al 3+", "Al 2+", "Al +", "Al 4+"],
+        correctIndex: 0,
+        explanation: "アルミニウムは13族元素で、価電子を3個失って3価の陽イオンになります。"
+    },
+    {
+        id: 127,
+        text: "イオン式「Fe 2+」の名称は？",
+        type: "text",
+        options: ["鉄(II)イオン", "鉄(III)イオン", "フッ化物イオン", "銅(II)イオン"],
+        correctIndex: 0,
+        explanation: "鉄は遷移元素で、2価や3価のイオンになりえます。"
+    },
+    {
+        id: 128,
+        text: "「酸化物イオン」のイオン式は？",
+        type: "text",
+        options: ["O 2-", "O -", "O2 -", "OH -"],
+        correctIndex: 0,
+        explanation: "酸素原子は電子を2個受け取って安定化します。"
+    },
+    {
+        id: 129,
+        text: "イオン式「Zn 2+」の名称は？",
+        type: "text",
+        options: ["亜鉛イオン", "スズイオン", "ジルコニウムイオン", "鉛イオン"],
+        correctIndex: 0,
+        explanation: "亜鉛は主に2価の陽イオンになります。"
+    },
+    {
+        id: 130,
+        text: "「銀イオン」のイオン式は？",
+        type: "text",
+        options: ["Ag +", "Ag 2+", "Au +", "Hg 2+"],
+        correctIndex: 0,
+        explanation: "銀は1価の陽イオンになりやすい遷移元素です。"
+    },
+    {
+        id: 131,
+        text: "イオン式「Cu 2+」の名称は？",
+        type: "text",
+        options: ["銅(II)イオン", "銅(I)イオン", "カルシウムイオン", "コバルトイオン"],
+        correctIndex: 0,
+        explanation: "水溶液中では青色を示します。"
+    },
+    {
+        id: 132,
+        text: "「硫化物イオン」のイオン式は？",
+        type: "text",
+        options: ["S 2-", "SO4 2-", "SO3 2-", "Si 4-"],
+        correctIndex: 0,
+        explanation: "硫黄原子は酸素と同じ16族で、2価の陰イオンになります。"
+    },
+    {
+        id: 133,
+        text: "イオン式「H3O+」の名称は？",
+        type: "text",
+        options: ["オキソニウムイオン", "水酸化物イオン", "過酸化水素", "水素イオン"],
+        correctIndex: 0,
+        explanation: "水素イオンが水分子と配位結合した形です。"
+    },
+    {
+        id: 134,
+        text: "「炭酸水素イオン」のイオン式は？",
+        type: "text",
+        options: ["HCO3 -", "CO3 2-", "H2CO3", "CH3COO-"],
+        correctIndex: 0,
+        explanation: "炭酸の第1段階電離で生じます。"
+    },
+    {
+        id: 135,
+        text: "イオン式「Mg 2+」の名称は？",
+        type: "text",
+        options: ["マグネシウムイオン", "マンガンイオン", "水銀イオン", "モリブデンイオン"],
+        correctIndex: 0,
+        explanation: "2族元素のマグネシウムのイオンです。"
+    },
+    {
+        id: 136,
+        text: "「バリウムイオン」のイオン式は？",
+        type: "text",
+        options: ["Ba 2+", "Be 2+", "B 3+", "Br -"],
+        correctIndex: 0,
+        explanation: "2族元素のバリウムのイオンです。"
+    },
+
+    // --- 追加問題: イオン結晶の組成式 (Composition Formulas) ---
+    {
+        id: 137,
+        text: "ナトリウムイオン(Na+)と塩化物イオン(Cl-)が結合した物質の化学式は？",
+        type: "text",
+        options: ["NaCl", "Na2Cl", "NaCl2", "NaClO"],
+        correctIndex: 0,
+        explanation: "1価の陽イオンと1価の陰イオンなので1:1で結合します。"
+    },
+    {
+        id: 138,
+        text: "カルシウムイオン(Ca2+)と塩化物イオン(Cl-)の組成式は？",
+        type: "text",
+        options: ["CaCl2", "CaCl", "Ca2Cl", "Ca2Cl2"],
+        correctIndex: 0,
+        explanation: "電荷の総和が0になるよう、Ca2+ 1個に対して Cl- が2個必要です。"
+    },
+    {
+        id: 139,
+        text: "アルミニウムイオン(Al3+)と酸化物イオン(O2-)の組成式は？",
+        type: "text",
+        options: ["Al2O3", "AlO", "Al3O2", "AlO2"],
+        correctIndex: 0,
+        explanation: "3(+)×2 = 6、2(-)×3 = 6。最小公倍数で合わせます。"
+    },
+    {
+        id: 140,
+        text: "ナトリウムイオン(Na+)と水酸化物イオン(OH-)の組成式は？",
+        type: "text",
+        options: ["NaOH", "Na(OH)2", "Na2OH", "NaH"],
+        correctIndex: 0,
+        explanation: "水酸化ナトリウムです。"
+    },
+    {
+        id: 141,
+        text: "カルシウムイオン(Ca2+)と水酸化物イオン(OH-)の組成式は？",
+        type: "text",
+        options: ["Ca(OH)2", "CaOH", "Ca2OH", "CaOH2"],
+        correctIndex: 0,
+        explanation: "水酸化カルシウム（消石灰）です。OH全体をカッコでくくります。"
+    },
+    {
+        id: 142,
+        text: "銅(II)イオン(Cu2+)と硫酸イオン(SO4 2-)の組成式は？",
+        type: "text",
+        options: ["CuSO4", "Cu2SO4", "Cu(SO4)2", "CuS"],
+        correctIndex: 0,
+        explanation: "2価同士なので1:1で結合します。硫酸銅(II)です。"
+    },
+    {
+        id: 143,
+        text: "アンモニウムイオン(NH4+)と塩化物イオン(Cl-)の組成式は？",
+        type: "text",
+        options: ["NH4Cl", "NH3Cl", "(NH4)2Cl", "NH4Cl2"],
+        correctIndex: 0,
+        explanation: "塩化アンモニウムです。塩安とも呼ばれます。"
+    },
+    {
+        id: 144,
+        text: "アンモニウムイオン(NH4+)と硫酸イオン(SO4 2-)の組成式は？",
+        type: "text",
+        options: ["(NH4)2SO4", "NH4SO4", "NH4(SO4)2", "N2H8SO4"],
+        correctIndex: 0,
+        explanation: "硫酸アンモニウムです。1価の陽イオン2個で2価の陰イオンと釣り合います。"
+    },
+    {
+        id: 145,
+        text: "銀イオン(Ag+)と硝酸イオン(NO3-)の組成式は？",
+        type: "text",
+        options: ["AgNO3", "Ag(NO3)2", "Ag2NO3", "AgN"],
+        correctIndex: 0,
+        explanation: "硝酸銀です。水によく溶けます。"
+    },
+    {
+        id: 146,
+        text: "鉄(III)イオン(Fe3+)と水酸化物イオン(OH-)の組成式は？",
+        type: "text",
+        options: ["Fe(OH)3", "FeOH", "Fe(OH)2", "Fe3OH"],
+        correctIndex: 0,
+        explanation: "水酸化鉄(III)です。赤褐色の沈殿を作ります。"
+    },
+    {
+        id: 147,
+        text: "マグネシウムイオン(Mg2+)と酸化物イオン(O2-)の組成式は？",
+        type: "text",
+        options: ["MgO", "Mg2O", "MgO2", "Mg2O2"],
+        correctIndex: 0,
+        explanation: "酸化マグネシウムです。"
+    },
+    {
+        id: 148,
+        text: "炭酸カルシウムの化学式は？",
+        type: "text",
+        options: ["CaCO3", "Ca(CO3)2", "Ca2CO3", "CaHCO3"],
+        correctIndex: 0,
+        explanation: "Ca2+とCO3 2-の結合です。石灰石の主成分です。"
+    },
+    {
+        id: 149,
+        text: "炭酸水素ナトリウムの化学式は？",
+        type: "text",
+        options: ["NaHCO3", "Na2CO3", "NaCO3", "NaH2CO3"],
+        correctIndex: 0,
+        explanation: "重曹とも呼ばれます。Na+とHCO3-です。"
+    },
+    {
+        id: 150,
+        text: "酸化銅(II)の化学式は？",
+        type: "text",
+        options: ["CuO", "Cu2O", "CuO2", "Cu2O3"],
+        correctIndex: 0,
+        explanation: "Cu2+とO2-からなる黒色粉末です。"
+    },
+    {
+        id: 151,
+        text: "塩化鉄(III)の化学式は？",
+        type: "text",
+        options: ["FeCl3", "FeCl2", "Fe3Cl", "FeCl"],
+        correctIndex: 0,
+        explanation: "Fe3+とCl-が1:3で結合します。"
+    },
+    {
+        id: 152,
+        text: "硫化水素の化学式は？",
+        type: "text",
+        options: ["H2S", "HS", "H2SO4", "HS2"],
+        correctIndex: 0,
+        explanation: "腐卵臭のある気体です。共有結合分子ですが、イオンの価数と同様に考えられます。"
+    },
+
+    // --- その他補充問題 ---
+    {
+        id: 153,
+        text: "カリウムイオン(K+)の電子配置はどの希ガスと同じか？",
+        type: "text",
+        options: ["アルゴン(Ar)", "ネオン(Ne)", "クリプトン(Kr)", "ヘリウム(He)"],
+        correctIndex: 0,
+        explanation: "K(19)が電子を1個失って18個になり、Arと同じになります。"
+    },
+    {
+        id: 154,
+        text: "酸化物イオン(O2-)の電子配置はどの希ガスと同じか？",
+        type: "text",
+        options: ["ネオン(Ne)", "アルゴン(Ar)", "ヘリウム(He)", "クリプトン(Kr)"],
+        correctIndex: 0,
+        explanation: "O(8)が電子を2個受け取って10個になり、Neと同じになります。"
+    },
+    {
+        id: 155,
+        text: "次のうち、2価の陰イオンを生じる元素は？",
+        type: "text",
+        options: ["硫黄(S)", "塩素(Cl)", "ナトリウム(Na)", "アルミニウム(Al)"],
+        correctIndex: 0,
+        explanation: "16族元素は2価の陰イオンになりやすいです。"
+    },
+    {
+        id: 156,
+        text: "共有電子対の偏りによって生じる電荷の偏りを何というか？",
+        type: "text",
+        options: ["極性", "電気陰性度", "配位結合", "イオン化"],
+        correctIndex: 0,
+        explanation: "電気陰性度の差が大きいほど極性が大きくなります。"
+    },
+    {
+        id: 157,
+        text: "原子が電子を引き寄せる強さの尺度を何というか？",
+        type: "text",
+        options: ["電気陰性度", "電子親和力", "イオン化エネルギー", "原子半径"],
+        correctIndex: 0,
+        explanation: "ポーリングの定義などが有名です。Fが最大です。"
+    },
+    {
+        id: 158,
+        text: "極性が互いに打ち消し合い、分子全体として極性を持たない分子を何というか？",
+        type: "text",
+        options: ["無極性分子", "極性分子", "高分子", "イオン結晶"],
+        correctIndex: 0,
+        explanation: "メタン(CH4)や二酸化炭素(CO2)などがその例です。"
+    },
+    {
+        id: 159,
+        text: "水分子(H2O)は極性分子か、無極性分子か？",
+        type: "text",
+        options: ["極性分子", "無極性分子", "イオン結晶", "金属結晶"],
+        correctIndex: 0,
+        explanation: "折れ線形で極性が打ち消し合わないため、強い極性を持ちます。"
+    },
+    {
+        id: 160,
+        text: "二酸化炭素(CO2)は極性分子か、無極性分子か？",
+        type: "text",
+        options: ["無極性分子", "極性分子", "共有結合結晶", "イオン結晶"],
+        correctIndex: 0,
+        explanation: "直線形で極性が打ち消し合うため、無極性分子になります。"
     }
 ];
 

@@ -435,6 +435,48 @@ h1 {
     }
 }
 
+/* Question List Screen */
+.question-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 8px;
+    padding-bottom: 20px;
+}
+
+.q-list-item {
+    aspect-ratio: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.q-list-item:hover {
+    background: #eee;
+}
+
+/* Completed State */
+.q-list-item.completed {
+    background: var(--correct);
+    color: var(--primary-dark);
+    border-color: var(--primary);
+    font-weight: bold;
+}
+
+/* Selected State */
+.q-list-item.selected {
+    transform: scale(0.95);
+    border: 3px solid var(--primary-dark);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
 .mascot-container {
     animation: float 4s ease-in-out infinite;
 }

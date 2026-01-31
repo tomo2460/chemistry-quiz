@@ -1,6 +1,6 @@
 const App = {
     state: {
-        targetQuestionCount: 20, // Default 20, can be 10
+        targetQuestionCount: 20,
         questions: [],
         currentQuestionIndex: 0,
         retryQueue: [],
@@ -9,13 +9,18 @@ const App = {
         startTime: null,
         endTime: null,
 
+        // Selection Mode
+        selectedQuestionIds: [],
+        isSelectionMode: false,
+
         // New stats for titles
         currentRunStreak: 0,
         maxStreak: 0,
-        retriesPerQuestion: {}, // { questionId: count } for "Transition State Walker"
+        retriesPerQuestion: {},
 
         userProgress: {
             unlockedTitles: [],
+            completedQuestionIds: [], // Track cleared IDs
             playHistory: {
                 totalPlays: 0
             }
@@ -27,7 +32,8 @@ const App = {
             title: document.getElementById('title-screen'),
             quiz: document.getElementById('quiz-screen'),
             result: document.getElementById('result-screen'),
-            collection: document.getElementById('collection-screen')
+            collection: document.getElementById('collection-screen'),
+            questionList: document.getElementById('question-list-screen') // New Screen
         },
         buttons: {
             // start: document.getElementById('start-btn'), // Old button
@@ -94,11 +100,60 @@ const App = {
         buttons.start10.addEventListener('click', () => App.startQuiz(10));
         buttons.start20.addEventListener('click', () => App.startQuiz(20));
 
+        // New Listeners
+        document.getElementById('q-list-btn').addEventListener('click', () => App.showQuestionList());
+        document.getElementById('q-list-back-btn').addEventListener('click', () => App.switchScreen('title'));
+        document.getElementById('start-selected-btn').addEventListener('click', () => App.startSelectedQuiz());
+
+        document.getElementById('select-uncompleted-btn').addEventListener('click', () => {
+            const uncompleted = QUESTION_DATA.filter(q =>
+                !App.state.userProgress.completedQuestionIds ||
+                !App.state.userProgress.completedQuestionIds.includes(q.id)
+            ).map(q => q.id);
+
+            App.state.selectedQuestionIds = uncompleted;
+            App.showQuestionList(); // Re-render to show selection
+            // Actually re-rendering is heavy, better to just update classes.
+            // For simplicity, just update the grid items' classes?
+            // Since showQuestionList rebuilds the grid based on selectedQuestionIds (Wait, the implementation above rebuilt it but didn't check IDs initially? No, let's look at showQuestionList again.
+            // showQuestionList clears selectedQuestionIds at start! That's a bug if we want to preserve it or update it.
+            // Wait, the previous implementation cleared it.
+            // Let's modify logic: select-uncompleted should select them, then we update UI.
+            // I will override the previous implementation of showQuestionList to NOT clear if we don't want to?
+            // No, standard flow: Open Screen -> Clear Selection.
+            // Inside screen: Click "Select All Uncompleted" -> Selects them.
+            // So I need to implement `selectAllUncompleted` logic here correctly.
+
+            // Let's reload the list with these selected.
+            // But my showQuestionList currently clears selection. I should fix that or handle it.
+            // I'll update the logic in the replacement to set state then manually update UI classes since I can't call showQuestionList without clearing (based on my memory of my code). 
+            // Actually let's assume showQuestionList resets. 
+            // So I will just update the DOM elements directly here for "Select Uncompleted".
+
+            const items = document.querySelectorAll('.q-list-item');
+            App.state.selectedQuestionIds = []; // Clear first to avoid dupes
+            items.forEach(btn => {
+                if (btn.classList.contains('uncompleted')) {
+                    btn.classList.add('selected');
+                    App.state.selectedQuestionIds.push(parseInt(btn.textContent));
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
+            App.updateSelectionCount();
+        });
+
         buttons.collection.addEventListener('click', () => App.showCollection());
         buttons.home.addEventListener('click', () => App.switchScreen('title'));
 
-        // Retry with same count
-        buttons.retryResult.addEventListener('click', () => App.startQuiz(App.state.targetQuestionCount));
+        // Retry with same count or ID list
+        buttons.retryResult.addEventListener('click', () => {
+            if (App.state.isSelectionMode) {
+                App.startQuiz(App.state.selectedQuestionIds); // Retry selected
+            } else {
+                App.startQuiz(App.state.targetQuestionCount);
+            }
+        });
 
         buttons.back.addEventListener('click', () => App.switchScreen('title'));
         buttons.next.addEventListener('click', () => App.nextQuestion()); // feedback next
@@ -119,12 +174,26 @@ const App = {
         }, 50);
     },
 
-    startQuiz: (count) => {
-        App.state.targetQuestionCount = count;
+    startQuiz: (countOrIds) => {
+        // If array, it's specific IDs (Selection Mode)
+        if (Array.isArray(countOrIds)) {
+            App.state.targetQuestionCount = countOrIds.length;
+            const pool = QUESTION_DATA.filter(q => countOrIds.includes(q.id));
+            App.state.questions = pool.sort(() => 0.5 - Math.random()); // Shuffle selected too
+            App.state.isSelectionMode = true;
+        } else {
+            // Normal Count Mode
+            App.state.targetQuestionCount = countOrIds;
+            const shuffledPool = [...QUESTION_DATA].sort(() => 0.5 - Math.random());
+            App.state.questions = shuffledPool.slice(0, countOrIds);
+            App.state.isSelectionMode = false;
+        }
+
         App.state.isRetryMode = false;
         App.state.retryQueue = [];
         App.state.correctCount = 0;
         App.state.currentQuestionIndex = 0;
+        App.state.selectedQuestionIds = [];
 
         // Reset Logic Vars
         App.state.currentRunStreak = 0;
@@ -133,13 +202,54 @@ const App = {
 
         App.updateMascot('normal');
 
-        // Random Selection
-        const shuffledPool = [...QUESTION_DATA].sort(() => 0.5 - Math.random());
-        App.state.questions = shuffledPool.slice(0, count);
-
         App.state.startTime = Date.now();
         App.switchScreen('quiz');
         App.renderQuestion();
+    },
+
+    showQuestionList: () => {
+        const { questionList } = App.elements.screens;
+        const grid = document.getElementById('q-list-grid');
+        const countSpan = document.getElementById('q-list-count');
+
+        grid.innerHTML = '';
+        App.state.selectedQuestionIds = [];
+        App.updateSelectionCount();
+
+        QUESTION_DATA.forEach(q => {
+            const isCompleted = App.state.userProgress.completedQuestionIds && App.state.userProgress.completedQuestionIds.includes(q.id);
+            const btn = document.createElement('button');
+            btn.className = `q-list-item ${isCompleted ? 'completed' : 'uncompleted'}`;
+            btn.textContent = q.id;
+
+            btn.onclick = () => {
+                btn.classList.toggle('selected');
+                if (App.state.selectedQuestionIds.includes(q.id)) {
+                    App.state.selectedQuestionIds = App.state.selectedQuestionIds.filter(id => id !== q.id);
+                } else {
+                    App.state.selectedQuestionIds.push(q.id);
+                }
+                App.updateSelectionCount();
+            };
+
+            grid.appendChild(btn);
+        });
+
+        App.switchScreen('questionList');
+    },
+
+    updateSelectionCount: () => {
+        const countSpan = document.getElementById('q-list-count');
+        const count = App.state.selectedQuestionIds.length;
+        if (countSpan) countSpan.textContent = `${count}問 選択中`;
+    },
+
+    startSelectedQuiz: () => {
+        if (App.state.selectedQuestionIds.length === 0) {
+            alert('問題を選択してください');
+            return;
+        }
+        App.startQuiz(App.state.selectedQuestionIds);
     },
 
     renderQuestion: () => {
@@ -218,19 +328,25 @@ const App = {
             }
         } else {
             // Retry mode
-            if (!isCorrect) {
+            if (isCorrect) {
+                // In retry mode, if correct, we consider it "cleared" for tracking purposes?
+                // Actually, let's only mark 'completed' if cleared in main run OR cleared in retry.
+                // Logic below handles checking round end.
+            } else {
                 App.state.retryQueue.push(q);
-                // Increment retry count for title logic
                 if (!App.state.retriesPerQuestion[q.id]) App.state.retriesPerQuestion[q.id] = 0;
                 App.state.retriesPerQuestion[q.id]++;
             }
-            // In retry mode, we might want to keep him happy if they are doing well, 
-            // strictly streak based logic above applies to "currentRunStreak" which resets on error.
-            // Let's assume streak logic applies here too if we tracked it in retry mode,
-            // but requirements said "Current Streak". Current logic only tracks streak in Main Mode clearly.
-            // Let's keep it simple: Normal in retry mode unless we add streak logic there.
-            // Actually, let's reset to normal when entering retry mode or staying normal.
             App.updateMascot('normal');
+        }
+
+        // Track Completion (New)
+        if (isCorrect) {
+            if (!App.state.userProgress.completedQuestionIds) App.state.userProgress.completedQuestionIds = [];
+            if (!App.state.userProgress.completedQuestionIds.includes(q.id)) {
+                App.state.userProgress.completedQuestionIds.push(q.id);
+                App.saveProgress();
+            }
         }
     },
 
