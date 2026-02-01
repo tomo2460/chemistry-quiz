@@ -739,7 +739,7 @@ const QUESTION_DATA = [
         id: 118,
         text: "「水酸化物イオン」のイオン式は？",
         type: "text",
-        options: ["OH<sup>-</sup>", "H<sub>3</sub>O<sup>+</sup>", "O<sup>2-</sup>", "H-"],
+        options: ["OH<sup>-</sup>", "H<sub>3</sub>O<sup>+</sup>", "O<sup>2-</sup>", "H<sup>-</sup>"],
         correctIndex: 0,
         explanation: "酸素と水素からなる1価の陰イオンです。"
     },
@@ -901,7 +901,7 @@ const QUESTION_DATA = [
         id: 138,
         text: "カルシウムイオン(Ca<sup>2+</sup>)と塩化物イオン(Cl<sup>-</sup>)の組成式は？",
         type: "text",
-        options: ["CaCl<sub>2</sub>", "CaCl", "Ca2Cl", "Ca2Cl<sub>2</sub>"],
+        options: ["CaCl<sub>2</sub>", "CaCl", "Ca<sub>2</sub>Cl", "Ca2Cl<sub>2</sub>"],
         correctIndex: 0,
         explanation: "電荷の総和が0になるよう、Ca<sup>2+</sup> 1個に対して Cl<sup>-</sup> が2個必要です。"
     },
