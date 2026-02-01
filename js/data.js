@@ -1091,18 +1091,21 @@ const TITLES = [
         id: "stable_gas",
         name: "希ガス級の安定感",
         desc: "1度も間違えずに全問正解",
+        image: "assets/cards/card_stable_gas.png",
         condition: (s) => s.currentRun.firstTryCorrect === s.currentRun.totalQuestions
     },
     {
         id: "diamond_bond",
         name: "ダイヤモンド・ボンド",
         desc: "1周目の正解率が90%以上",
+        image: "assets/cards/card_diamond_bond.png",
         condition: (s) => (s.currentRun.firstTryCorrect / s.currentRun.totalQuestions) >= 0.9
     },
     {
         id: "zero_impurity",
         name: "不純物ゼロ",
         desc: "解き直しを1回もせずにクリア",
+        image: "assets/cards/card_zero_impurity.png",
         condition: (s) => s.currentRun.retryCount === 0
     },
 
@@ -1111,18 +1114,21 @@ const TITLES = [
         id: "light_speed_electron",
         name: "光速の電子",
         desc: "1問平均3秒以内で解答し、全問正解",
+        image: "assets/cards/card_light_speed_electron.png",
         condition: (s) => (s.currentRun.timeSeconds / s.currentRun.totalQuestions) <= 3 && s.currentRun.firstTryCorrect === s.currentRun.totalQuestions
     },
     {
         id: "reaction_rate_overflow",
         name: "反応速度定数オーバー",
         desc: "1分以内(10問)/2分以内(20問)でクリア",
-        condition: (s) => s.currentRun.timeSeconds <= (s.currentRun.totalQuestions * 6) // Roughly 6 sec per question pace? Text says "Amazing speed", let's say 60s for 10, 120s for 20.
+        image: "assets/cards/card_reaction_overflow.png",
+        condition: (s) => s.currentRun.timeSeconds <= (s.currentRun.totalQuestions * 6)
     },
     {
         id: "catalyst_work",
         name: "触媒級の仕事",
         desc: "通常の半分以下の時間でクリア (基準: 1問5秒)",
+        image: "assets/cards/card_catalyst_work.png",
         condition: (s) => (s.currentRun.timeSeconds / s.currentRun.totalQuestions) <= 5
     },
 
@@ -1131,63 +1137,65 @@ const TITLES = [
         id: "persistent_ionic_bond",
         name: "不屈のイオン結合",
         desc: "解き直しを5回以上繰り返して完遂",
+        image: "assets/cards/card_persistent_ionic_bond.png",
         condition: (s) => s.currentRun.retryCount >= 5
     },
     {
         id: "recrystallization_master",
         name: "再結晶の達人",
         desc: "解き直しを完遂した（1回以上）",
+        image: "assets/cards/card_recrystallization_master.png",
         condition: (s) => s.currentRun.retryCount >= 1
     },
     {
         id: "transition_state_walker",
         name: "遷移状態の越境者",
         desc: "苦手な問題(3回以上ミス)を克服",
-        condition: (s) => s.currentRun.maxRetriesPerQuestion >= 3 // Need to track per question
+        image: "assets/cards/card_transition_walker.png",
+        condition: (s) => s.currentRun.maxRetriesPerQuestion >= 3
     },
 
-    // D. 【ユーモア・専門性】を称える称号 / Humor
+    // D. 【ユーモア・専門性】を称える称号 / Special
     {
         id: 'valance_magician',
         name: '価電子の魔術師',
         desc: '電子配置の問題を全問正解した',
+        image: "assets/cards/card_valence_magician.png",
         condition: (state) => state.playHistory.totalPlays >= 1
-    },
-    {
-        id: 'valance_magician',
-        name: '価電子の魔術師',
-        desc: '電子配置の問題を全問正解した',
-        condition: (state) => state.playHistory.totalPlays >= 1 // Simplified: Awarded for playing for now, or need category tracking
     },
     {
         id: 'cation_mood',
         name: '陽イオンな気分',
         desc: '5問連続で正解した',
+        image: "assets/cards/card_cation_mood.png",
         condition: (state) => state.currentRun.maxStreak >= 5
     },
     {
         id: 'octet_guardian',
         name: 'オクテット則の守護者',
         desc: '満点でクリアした',
+        image: "assets/cards/card_octet_guardian.png",
         condition: (state) => state.currentRun.firstTryCorrect === state.currentRun.totalQuestions
     },
-    // New Titles
     {
         id: 'flame_master',
         name: '炎色反応マスター',
-        desc: '情熱的に（スピードクリアで）問題を解いた', // Generic speed condition proxy
+        desc: '情熱的に（スピードクリアで）問題を解いた',
+        image: "assets/cards/card_speed.png", // Fallback
         condition: (state) => state.currentRun.firstTryCorrect === state.currentRun.totalQuestions && (state.currentRun.timeSeconds / state.currentRun.totalQuestions) < 5
     },
     {
         id: 'periodic_navigator',
         name: '周期表のナビゲーター',
         desc: '20問コースを最後までやり遂げた',
+        image: "assets/cards/card_special.png", // Fallback
         condition: (state) => state.currentRun.totalQuestions === 20
     },
     {
         id: 'sublimation_soul',
         name: '昇華する魂',
         desc: '一度間違えても、解き直しで全て正解した（不純物ゼロ以外でクリア）',
-        condition: (state) => state.currentRun.firstTryCorrect < state.currentRun.totalQuestions // Just finishing implies they cleared retries in this app logic
+        image: "assets/cards/card_persistence.png", // Fallback
+        condition: (state) => state.currentRun.firstTryCorrect < state.currentRun.totalQuestions
     }
 ];

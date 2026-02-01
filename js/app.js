@@ -434,22 +434,34 @@ const App = {
     showCollection: () => {
         const { collection } = App.elements;
         collection.grid.innerHTML = '';
+        // Use a new class for card layout if not already present, or style existing one
+        collection.grid.className = 'collection-grid card-mode';
 
         TITLES.forEach(t => {
             const isUnlocked = App.state.userProgress.unlockedTitles.includes(t.id);
-            const item = document.createElement('div');
-            item.className = `collection-item ${isUnlocked ? 'unlocked' : ''}`;
 
-            const icon = document.createElement('div');
-            icon.className = 'collection-icon';
-            icon.textContent = isUnlocked ? '🏆' : '🔒';
+            const card = document.createElement('div');
+            card.className = `title-card-item ${isUnlocked ? 'unlocked' : 'locked'}`;
 
+            // Card Image
+            const imgFrame = document.createElement('div');
+            imgFrame.className = 'card-frame';
+            const img = document.createElement('img');
+            img.src = isUnlocked && t.image ? t.image : 'assets/cards/card_locked.png';
+            img.className = 'card-img';
+            imgFrame.appendChild(img);
+
+            // Card Info
             const info = document.createElement('div');
-            info.innerHTML = `<strong>${isUnlocked ? t.name : '？？？'}</strong><br><small>${isUnlocked ? t.desc : '獲得条件不明'}</small>`;
+            info.className = 'card-info';
+            info.innerHTML = `
+                <div class="card-name">${isUnlocked ? t.name : '？？？'}</div>
+                <div class="card-desc">${isUnlocked ? t.desc : '条件未達成'}</div>
+            `;
 
-            item.appendChild(icon);
-            item.appendChild(info);
-            collection.grid.appendChild(item);
+            card.appendChild(imgFrame);
+            card.appendChild(info);
+            collection.grid.appendChild(card);
         });
 
         App.switchScreen('collection');
