@@ -271,7 +271,7 @@ const App = {
         quiz.progressBar.style.width = App.state.isRetryMode ? '100%' : `${pct}%`;
         quiz.progressBar.style.backgroundColor = App.state.isRetryMode ? 'var(--secondary)' : 'var(--primary)';
 
-        quiz.questionText.textContent = q.text;
+        quiz.questionText.innerHTML = q.text;
 
         if (q.type === 'visual' && q.diagramType === 'atom_shell') {
             Visuals.renderAtomShell(quiz.visualArea, q.diagramData);
@@ -283,7 +283,7 @@ const App = {
         indices.forEach(i => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
-            btn.textContent = q.options[i];
+            btn.innerHTML = q.options[i];
             btn.onclick = () => App.handleAnswer(i, q.correctIndex);
             quiz.optionsContainer.appendChild(btn);
         });
@@ -297,7 +297,7 @@ const App = {
         quiz.feedbackIcon.textContent = isCorrect ? '⭕' : '❌';
         quiz.feedbackIcon.className = 'feedback-icon ' + (isCorrect ? 'feedback-correct' : 'feedback-wrong');
         quiz.feedbackText.textContent = isCorrect ? '正解！' : '残念...';
-        quiz.explanationText.textContent = q.explanation;
+        quiz.explanationText.innerHTML = q.explanation;
         quiz.feedbackOverlay.classList.remove('hidden');
 
         // Logic Update

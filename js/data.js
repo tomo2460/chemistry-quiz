@@ -91,7 +91,7 @@ const QUESTION_DATA = [
         type: "text",
         options: ["1価の陽イオン", "1価の陰イオン", "2価の陽イオン", "2価の陰イオン"],
         correctIndex: 0,
-        explanation: "Naは1族なので、電子を1個放出してNa+（1価の陽イオン）になりやすいです。"
+        explanation: "Naは1族なので、電子を1個放出してNa<sup>+</sup>（1価の陽イオン）になりやすいです。"
     },
     {
         id: 12,
@@ -99,7 +99,7 @@ const QUESTION_DATA = [
         type: "text",
         options: ["アルゴン(Ar)", "ネオン(Ne)", "ヘリウム(He)", "クリプトン(Kr)"],
         correctIndex: 0,
-        explanation: "Cl(17)は電子を1個受け取ってCl-(18)となり、Ar(18)と同じ配置になります。"
+        explanation: "Cl(17)は電子を1個受け取ってCl<sup>-</sup>(18)となり、Ar(18)と同じ配置になります。"
     },
     {
         id: 13,
@@ -107,11 +107,11 @@ const QUESTION_DATA = [
         type: "text",
         options: ["アンモニウムイオン", "塩化物イオン", "ナトリウムイオン", "酸化物イオン"],
         correctIndex: 0,
-        explanation: "アンモニウムイオン(NH4+)は、窒素と水素という複数の原子からなる多原子イオンです。"
+        explanation: "アンモニウムイオン(NH<sub>4</sub><sup>+</sup>)は、窒素と水素という複数の原子からなる多原子イオンです。"
     },
     {
         id: 14,
-        text: "カルシウムイオン(Ca2+)の電子配置はどの希ガスと同じか？",
+        text: "カルシウムイオン(Ca<sup>2+</sup>)の電子配置はどの希ガスと同じか？",
         type: "text",
         options: ["アルゴン(Ar)", "ネオン(Ne)", "キセノン(Xe)", "ヘリウム(He)"],
         correctIndex: 0,
@@ -181,7 +181,7 @@ const QUESTION_DATA = [
         type: "text",
         options: ["6個", "4個", "8個", "12個"],
         correctIndex: 0,
-        explanation: "NaCl型構造では、1つのNa+は6つのCl-に、1つのCl-は6つのNa+に囲まれています。"
+        explanation: "NaCl型構造では、1つのNa<sup>+</sup>は6つのCl<sup>-</sup>に、1つのCl<sup>-</sup>は6つのNa<sup>+</sup>に囲まれています。"
     },
     {
         id: 23,
@@ -201,7 +201,7 @@ const QUESTION_DATA = [
     },
     {
         id: 25,
-        text: "窒素分子(N2)に含まれる結合はどれか？",
+        text: "窒素分子(N<sub>2</sub>)に含まれる結合はどれか？",
         type: "text",
         options: ["三重結合", "二重結合", "単結合", "イオン結合"],
         correctIndex: 0,
@@ -274,7 +274,7 @@ const QUESTION_DATA = [
         type: "text",
         options: ["酸素", "水", "二酸化炭素", "塩化ナトリウム"],
         correctIndex: 0,
-        explanation: "酸素(O2)は1種類の元素からなる純物質（単体）です。"
+        explanation: "酸素(O<sub>2</sub>)は1種類の元素からなる純物質（単体）です。"
     },
     {
         id: 60,
@@ -282,7 +282,7 @@ const QUESTION_DATA = [
         type: "text",
         options: ["水", "酸素", "鉄", "空気"],
         correctIndex: 0,
-        explanation: "水(H2O)は2種類以上の元素からなる純物質（化合物）です。"
+        explanation: "水(H<sub>2</sub>O)は2種類以上の元素からなる純物質（化合物）です。"
     },
     {
         id: 61,
@@ -408,15 +408,15 @@ const QUESTION_DATA = [
     // 12. 化学式と名称
     {
         id: 75,
-        text: "組成式 CaCl2 で表される物質の名称は？",
+        text: "組成式 CaCl<sub>2</sub> で表される物質の名称は？",
         type: "text",
         options: ["塩化カルシウム", "カルキ", "炭酸カルシウム", "酸化カルシウム"],
         correctIndex: 0,
-        explanation: "Ca2+ と Cl- からなるイオン結晶です。"
+        explanation: "Ca<sup>2+</sup> と Cl<sup>-</sup> からなるイオン結晶です。"
     },
     {
         id: 76,
-        text: "分子式 NH3 で表される物質は？",
+        text: "分子式 NH<sub>3</sub> で表される物質は？",
         type: "text",
         options: ["アンモニア", "アンモニウム", "メタン", "硝酸"],
         correctIndex: 0,
@@ -426,7 +426,7 @@ const QUESTION_DATA = [
         id: 77,
         text: "次のうち、共有結合結晶であるものは？",
         type: "text",
-        options: ["二酸化ケイ素(SiO2)", "ドライアイス(CO2)", "氷(H2O)", "塩化ナトリウム(NaCl)"],
+        options: ["二酸化ケイ素(SiO<sub>2</sub>)", "ドライアイス(CO<sub>2</sub>)", "氷(H<sub>2</sub>O)", "塩化ナトリウム(NaCl)"],
         correctIndex: 0,
         explanation: "二酸化ケイ素は石英や水晶の主成分で、巨大な共有結合の網目構造を持ちます。"
     },
@@ -452,7 +452,7 @@ const QUESTION_DATA = [
         id: 80,
         text: "常温常圧で液体の単体である非金属元素は？",
         type: "text",
-        options: ["臭素(Br2)", "水銀(Hg)", "塩素(Cl2)", "ヨウ素(I2)"],
+        options: ["臭素(Br<sub>2</sub>)", "水銀(Hg)", "塩素(Cl<sub>2</sub>)", "ヨウ素(I<sub>2</sub>)"],
         correctIndex: 0,
         explanation: "非金属で液体は臭素のみ。金属で液体は水銀のみです。"
     },
@@ -471,7 +471,7 @@ const QUESTION_DATA = [
         diagramType: "none",
         options: ["60個", "12個", "6個", "100個"],
         correctIndex: 0,
-        explanation: "サッカーボール型のC60が最も代表的です。"
+        explanation: "サッカーボール型のC<sub>60</sub>が最も代表的です。"
     },
     {
         id: 83,
@@ -519,7 +519,7 @@ const QUESTION_DATA = [
         id: 91,
         text: "ハロゲンの中で常温で個体のものは？",
         type: "text",
-        options: ["ヨウ素(I2)", "臭素(Br2)", "塩素(Cl2)", "フッ素(F2)"],
+        options: ["ヨウ素(I<sub>2</sub>)", "臭素(Br<sub>2</sub>)", "塩素(Cl<sub>2</sub>)", "フッ素(F<sub>2</sub>)"],
         correctIndex: 0,
         explanation: "F, Clは気体、Brは液体、Iは固体です。"
     },
@@ -543,7 +543,7 @@ const QUESTION_DATA = [
         id: 94,
         text: "空気中で最も多く含まれる気体は？",
         type: "text",
-        options: ["窒素(N2)", "酸素(O2)", "アルゴン(Ar)", "二酸化炭素(CO2)"],
+        options: ["窒素(N<sub>2</sub>)", "酸素(O<sub>2</sub>)", "アルゴン(Ar)", "二酸化炭素(CO<sub>2</sub>)"],
         correctIndex: 0,
         explanation: "窒素が約78%、酸素が約21%です。"
     },
@@ -729,7 +729,7 @@ const QUESTION_DATA = [
     // --- 追加問題: イオン式と名称 (Ions) ---
     {
         id: 117,
-        text: "イオン式「NH4+」の名称は？",
+        text: "イオン式「NH<sub>4</sub><sup>+</sup>」の名称は？",
         type: "text",
         options: ["アンモニウムイオン", "アンモニア", "硝酸イオン", "水素イオン"],
         correctIndex: 0,
@@ -739,61 +739,61 @@ const QUESTION_DATA = [
         id: 118,
         text: "「水酸化物イオン」のイオン式は？",
         type: "text",
-        options: ["OH-", "H3O+", "O2-", "H-"],
+        options: ["OH<sup>-</sup>", "H<sub>3</sub>O<sup>+</sup>", "O<sup>2-</sup>", "H-"],
         correctIndex: 0,
         explanation: "酸素と水素からなる1価の陰イオンです。"
     },
     {
         id: 119,
-        text: "イオン式「NO3-」の名称は？",
+        text: "イオン式「NO<sub>3</sub><sup>-</sup>」の名称は？",
         type: "text",
         options: ["硝酸イオン", "亜硝酸イオン", "窒化物イオン", "アンモニウムイオン"],
         correctIndex: 0,
-        explanation: "硝酸(HNO3)が電離して生じます。"
+        explanation: "硝酸(HNO<sub>3</sub>)が電離して生じます。"
     },
     {
         id: 120,
         text: "「硫酸イオン」のイオン式は？",
         type: "text",
-        options: ["SO4 2-", "SO3 2-", "S 2-", "HSO4-"],
+        options: ["SO<sub>4</sub><sup>2-</sup>", "SO<sub>3</sub><sup>2-</sup>", "S<sup>2-</sup>", "HSO<sub>4</sub><sup>-</sup>"],
         correctIndex: 0,
-        explanation: "硫酸(H2SO4)から水素イオンが2つ取れた陰イオンです。"
+        explanation: "硫酸(H<sub>2</sub>SO<sub>4</sub>)から水素イオンが2つ取れた陰イオンです。"
     },
     {
         id: 121,
-        text: "イオン式「CO3 2-」の名称は？",
+        text: "イオン式「CO<sub>3</sub><sup>2-</sup>」の名称は？",
         type: "text",
         options: ["炭酸イオン", "炭酸水素イオン", "酢酸イオン", "シュウ酸イオン"],
         correctIndex: 0,
-        explanation: "炭酸(H2CO3)の2価の陰イオンです。"
+        explanation: "炭酸(H<sub>2</sub>CO<sub>3</sub>)の2価の陰イオンです。"
     },
     {
         id: 122,
         text: "「リン酸イオン」のイオン式は？",
         type: "text",
-        options: ["PO4 3-", "PO3 3-", "P 3-", "HPO4 2-"],
+        options: ["PO<sub>4</sub><sup>3-</sup>", "PO<sub>3</sub><sup>3-</sup>", "P<sup>3-</sup>", "HPO<sub>4</sub><sup>2-</sup>"],
         correctIndex: 0,
-        explanation: "リン酸(H3PO4)の3価の陰イオンです。"
+        explanation: "リン酸(H<sub>3</sub>PO<sub>4</sub>)の3価の陰イオンです。"
     },
     {
         id: 123,
-        text: "イオン式「CH3COO-」の名称は？",
+        text: "イオン式「CH<sub>3</sub>COO<sup>-</sup>」の名称は？",
         type: "text",
         options: ["酢酸イオン", "ギ酸イオン", "シュウ酸イオン", "炭酸イオン"],
         correctIndex: 0,
-        explanation: "酢酸(CH3COOH)からH+が取れたものです。"
+        explanation: "酢酸(CH<sub>3</sub>COOH)からH<sup>+</sup>が取れたものです。"
     },
     {
         id: 124,
         text: "「塩化物イオン」のイオン式は？",
         type: "text",
-        options: ["Cl-", "ClO-", "ClO3-", "C-"],
+        options: ["Cl<sup>-</sup>", "ClO<sup>-</sup>", "ClO<sub>3</sub><sup>-</sup>", "C-"],
         correctIndex: 0,
         explanation: "塩素原子が電子を1個受け取ったものです。"
     },
     {
         id: 125,
-        text: "イオン式「Ca 2+」の名称は？",
+        text: "イオン式「Ca<sup>2+</sup>」の名称は？",
         type: "text",
         options: ["カルシウムイオン", "カリウムイオン", "銅イオン", "炭素イオン"],
         correctIndex: 0,
@@ -803,13 +803,13 @@ const QUESTION_DATA = [
         id: 126,
         text: "「アルミニウムイオン」のイオン式は？",
         type: "text",
-        options: ["Al 3+", "Al 2+", "Al +", "Al 4+"],
+        options: ["Al<sup>3+</sup>", "Al<sup>2+</sup>", "Al<sup>+</sup>", "Al<sup>4+</sup>"],
         correctIndex: 0,
         explanation: "アルミニウムは13族元素で、価電子を3個失って3価の陽イオンになります。"
     },
     {
         id: 127,
-        text: "イオン式「Fe 2+」の名称は？",
+        text: "イオン式「Fe<sup>2+</sup>」の名称は？",
         type: "text",
         options: ["鉄(II)イオン", "鉄(III)イオン", "フッ化物イオン", "銅(II)イオン"],
         correctIndex: 0,
@@ -819,13 +819,13 @@ const QUESTION_DATA = [
         id: 128,
         text: "「酸化物イオン」のイオン式は？",
         type: "text",
-        options: ["O 2-", "O -", "O2 -", "OH -"],
+        options: ["O<sup>2-</sup>", "O<sup>-</sup>", "O<sub>2</sub> -", "OH<sup>-</sup>"],
         correctIndex: 0,
         explanation: "酸素原子は電子を2個受け取って安定化します。"
     },
     {
         id: 129,
-        text: "イオン式「Zn 2+」の名称は？",
+        text: "イオン式「Zn<sup>2+</sup>」の名称は？",
         type: "text",
         options: ["亜鉛イオン", "スズイオン", "ジルコニウムイオン", "鉛イオン"],
         correctIndex: 0,
@@ -835,13 +835,13 @@ const QUESTION_DATA = [
         id: 130,
         text: "「銀イオン」のイオン式は？",
         type: "text",
-        options: ["Ag +", "Ag 2+", "Au +", "Hg 2+"],
+        options: ["Ag<sup>+</sup>", "Ag<sup>2+</sup>", "Au<sup>+</sup>", "Hg<sup>2+</sup>"],
         correctIndex: 0,
         explanation: "銀は1価の陽イオンになりやすい遷移元素です。"
     },
     {
         id: 131,
-        text: "イオン式「Cu 2+」の名称は？",
+        text: "イオン式「Cu<sup>2+</sup>」の名称は？",
         type: "text",
         options: ["銅(II)イオン", "銅(I)イオン", "カルシウムイオン", "コバルトイオン"],
         correctIndex: 0,
@@ -851,13 +851,13 @@ const QUESTION_DATA = [
         id: 132,
         text: "「硫化物イオン」のイオン式は？",
         type: "text",
-        options: ["S 2-", "SO4 2-", "SO3 2-", "Si 4-"],
+        options: ["S<sup>2-</sup>", "SO<sub>4</sub><sup>2-</sup>", "SO<sub>3</sub><sup>2-</sup>", "Si<sup>4-</sup>"],
         correctIndex: 0,
         explanation: "硫黄原子は酸素と同じ16族で、2価の陰イオンになります。"
     },
     {
         id: 133,
-        text: "イオン式「H3O+」の名称は？",
+        text: "イオン式「H<sub>3</sub>O<sup>+</sup>」の名称は？",
         type: "text",
         options: ["オキソニウムイオン", "水酸化物イオン", "過酸化水素", "水素イオン"],
         correctIndex: 0,
@@ -867,13 +867,13 @@ const QUESTION_DATA = [
         id: 134,
         text: "「炭酸水素イオン」のイオン式は？",
         type: "text",
-        options: ["HCO3 -", "CO3 2-", "H2CO3", "CH3COO-"],
+        options: ["HCO<sub>3</sub> -", "CO<sub>3</sub><sup>2-</sup>", "H<sub>2</sub>CO<sub>3</sub>", "CH<sub>3</sub>COO<sup>-</sup>"],
         correctIndex: 0,
         explanation: "炭酸の第1段階電離で生じます。"
     },
     {
         id: 135,
-        text: "イオン式「Mg 2+」の名称は？",
+        text: "イオン式「Mg<sup>2+</sup>」の名称は？",
         type: "text",
         options: ["マグネシウムイオン", "マンガンイオン", "水銀イオン", "モリブデンイオン"],
         correctIndex: 0,
@@ -883,7 +883,7 @@ const QUESTION_DATA = [
         id: 136,
         text: "「バリウムイオン」のイオン式は？",
         type: "text",
-        options: ["Ba 2+", "Be 2+", "B 3+", "Br -"],
+        options: ["Ba<sup>2+</sup>", "Be<sup>2+</sup>", "B<sup>3+</sup>", "Br<sup>-</sup>"],
         correctIndex: 0,
         explanation: "2族元素のバリウムのイオンです。"
     },
@@ -891,89 +891,89 @@ const QUESTION_DATA = [
     // --- 追加問題: イオン結晶の組成式 (Composition Formulas) ---
     {
         id: 137,
-        text: "ナトリウムイオン(Na+)と塩化物イオン(Cl-)が結合した物質の化学式は？",
+        text: "ナトリウムイオン(Na<sup>+</sup>)と塩化物イオン(Cl<sup>-</sup>)が結合した物質の化学式は？",
         type: "text",
-        options: ["NaCl", "Na2Cl", "NaCl2", "NaClO"],
+        options: ["NaCl", "Na2Cl", "NaCl<sub>2</sub>", "NaClO"],
         correctIndex: 0,
         explanation: "1価の陽イオンと1価の陰イオンなので1:1で結合します。"
     },
     {
         id: 138,
-        text: "カルシウムイオン(Ca2+)と塩化物イオン(Cl-)の組成式は？",
+        text: "カルシウムイオン(Ca<sup>2+</sup>)と塩化物イオン(Cl<sup>-</sup>)の組成式は？",
         type: "text",
-        options: ["CaCl2", "CaCl", "Ca2Cl", "Ca2Cl2"],
+        options: ["CaCl<sub>2</sub>", "CaCl", "Ca2Cl", "Ca2Cl<sub>2</sub>"],
         correctIndex: 0,
-        explanation: "電荷の総和が0になるよう、Ca2+ 1個に対して Cl- が2個必要です。"
+        explanation: "電荷の総和が0になるよう、Ca<sup>2+</sup> 1個に対して Cl<sup>-</sup> が2個必要です。"
     },
     {
         id: 139,
-        text: "アルミニウムイオン(Al3+)と酸化物イオン(O2-)の組成式は？",
+        text: "アルミニウムイオン(Al<sup>3+</sup>)と酸化物イオン(O<sup>2-</sup>)の組成式は？",
         type: "text",
-        options: ["Al2O3", "AlO", "Al3O2", "AlO2"],
+        options: ["Al<sub>2</sub>O<sub>3</sub>", "AlO", "Al3O<sub>2</sub>", "AlO<sub>2</sub>"],
         correctIndex: 0,
         explanation: "3(+)×2 = 6、2(-)×3 = 6。最小公倍数で合わせます。"
     },
     {
         id: 140,
-        text: "ナトリウムイオン(Na+)と水酸化物イオン(OH-)の組成式は？",
+        text: "ナトリウムイオン(Na<sup>+</sup>)と水酸化物イオン(OH<sup>-</sup>)の組成式は？",
         type: "text",
-        options: ["NaOH", "Na(OH)2", "Na2OH", "NaH"],
+        options: ["NaOH", "Na(OH)<sub>2</sub>", "Na<sub>2</sub>OH", "NaH"],
         correctIndex: 0,
         explanation: "水酸化ナトリウムです。"
     },
     {
         id: 141,
-        text: "カルシウムイオン(Ca2+)と水酸化物イオン(OH-)の組成式は？",
+        text: "カルシウムイオン(Ca<sup>2+</sup>)と水酸化物イオン(OH<sup>-</sup>)の組成式は？",
         type: "text",
-        options: ["Ca(OH)2", "CaOH", "Ca2OH", "CaOH2"],
+        options: ["Ca(OH)<sub>2</sub>", "CaOH", "Ca2OH", "CaOH<sub>2</sub>"],
         correctIndex: 0,
         explanation: "水酸化カルシウム（消石灰）です。OH全体をカッコでくくります。"
     },
     {
         id: 142,
-        text: "銅(II)イオン(Cu2+)と硫酸イオン(SO4 2-)の組成式は？",
+        text: "銅(II)イオン(Cu<sup>2+</sup>)と硫酸イオン(SO<sub>4</sub><sup>2-</sup>)の組成式は？",
         type: "text",
-        options: ["CuSO4", "Cu2SO4", "Cu(SO4)2", "CuS"],
+        options: ["CuSO<sub>4</sub>", "Cu2SO<sub>4</sub>", "Cu(SO<sub>4</sub>)2", "CuS"],
         correctIndex: 0,
         explanation: "2価同士なので1:1で結合します。硫酸銅(II)です。"
     },
     {
         id: 143,
-        text: "アンモニウムイオン(NH4+)と塩化物イオン(Cl-)の組成式は？",
+        text: "アンモニウムイオン(NH<sub>4</sub><sup>+</sup>)と塩化物イオン(Cl<sup>-</sup>)の組成式は？",
         type: "text",
-        options: ["NH4Cl", "NH3Cl", "(NH4)2Cl", "NH4Cl2"],
+        options: ["NH<sub>4</sub>Cl", "NH<sub>3</sub>Cl", "(NH<sub>4</sub>)<sub>2</sub>Cl", "NH<sub>4</sub>Cl<sub>2</sub>"],
         correctIndex: 0,
         explanation: "塩化アンモニウムです。塩安とも呼ばれます。"
     },
     {
         id: 144,
-        text: "アンモニウムイオン(NH4+)と硫酸イオン(SO4 2-)の組成式は？",
+        text: "アンモニウムイオン(NH<sub>4</sub><sup>+</sup>)と硫酸イオン(SO<sub>4</sub><sup>2-</sup>)の組成式は？",
         type: "text",
-        options: ["(NH4)2SO4", "NH4SO4", "NH4(SO4)2", "N2H8SO4"],
+        options: ["(NH<sub>4</sub>)<sub>2</sub>SO<sub>4</sub>", "NH<sub>4</sub>SO<sub>4</sub>", "NH<sub>4</sub>(SO<sub>4</sub>)2", "N<sub>2</sub>H8SO<sub>4</sub>"],
         correctIndex: 0,
         explanation: "硫酸アンモニウムです。1価の陽イオン2個で2価の陰イオンと釣り合います。"
     },
     {
         id: 145,
-        text: "銀イオン(Ag+)と硝酸イオン(NO3-)の組成式は？",
+        text: "銀イオン(Ag<sup>+</sup>)と硝酸イオン(NO<sub>3</sub><sup>-</sup>)の組成式は？",
         type: "text",
-        options: ["AgNO3", "Ag(NO3)2", "Ag2NO3", "AgN"],
+        options: ["AgNO<sub>3</sub>", "Ag(NO<sub>3</sub>)<sub>2</sub>", "Ag2NO<sub>3</sub>", "AgN"],
         correctIndex: 0,
         explanation: "硝酸銀です。水によく溶けます。"
     },
     {
         id: 146,
-        text: "鉄(III)イオン(Fe3+)と水酸化物イオン(OH-)の組成式は？",
+        text: "鉄(III)イオン(Fe<sup>3+</sup>)と水酸化物イオン(OH<sup>-</sup>)の組成式は？",
         type: "text",
-        options: ["Fe(OH)3", "FeOH", "Fe(OH)2", "Fe3OH"],
+        options: ["Fe(OH)<sub>3</sub>", "FeOH", "Fe(OH)<sub>2</sub>", "Fe3OH"],
         correctIndex: 0,
         explanation: "水酸化鉄(III)です。赤褐色の沈殿を作ります。"
     },
     {
         id: 147,
-        text: "マグネシウムイオン(Mg2+)と酸化物イオン(O2-)の組成式は？",
+        text: "マグネシウムイオン(Mg<sup>2+</sup>)と酸化物イオン(O<sup>2-</sup>)の組成式は？",
         type: "text",
-        options: ["MgO", "Mg2O", "MgO2", "Mg2O2"],
+        options: ["MgO", "Mg2O", "MgO<sub>2</sub>", "Mg2O<sub>2</sub>"],
         correctIndex: 0,
         explanation: "酸化マグネシウムです。"
     },
@@ -981,39 +981,39 @@ const QUESTION_DATA = [
         id: 148,
         text: "炭酸カルシウムの化学式は？",
         type: "text",
-        options: ["CaCO3", "Ca(CO3)2", "Ca2CO3", "CaHCO3"],
+        options: ["CaCO<sub>3</sub>", "Ca(CO<sub>3</sub>)2", "Ca2CO<sub>3</sub>", "CaHCO<sub>3</sub>"],
         correctIndex: 0,
-        explanation: "Ca2+とCO3 2-の結合です。石灰石の主成分です。"
+        explanation: "Ca<sup>2+</sup>とCO<sub>3</sub><sup>2-</sup>の結合です。石灰石の主成分です。"
     },
     {
         id: 149,
         text: "炭酸水素ナトリウムの化学式は？",
         type: "text",
-        options: ["NaHCO3", "Na2CO3", "NaCO3", "NaH2CO3"],
+        options: ["NaHCO<sub>3</sub>", "Na<sub>2</sub>CO<sub>3</sub>", "NaCO<sub>3</sub>", "NaH<sub>2</sub>CO<sub>3</sub>"],
         correctIndex: 0,
-        explanation: "重曹とも呼ばれます。Na+とHCO3-です。"
+        explanation: "重曹とも呼ばれます。Na<sup>+</sup>とHCO<sub>3</sub><sup>-</sup>です。"
     },
     {
         id: 150,
         text: "酸化銅(II)の化学式は？",
         type: "text",
-        options: ["CuO", "Cu2O", "CuO2", "Cu2O3"],
+        options: ["CuO", "Cu<sub>2</sub>O", "CuO<sub>2</sub>", "Cu<sub>2</sub>O<sub>3</sub>"],
         correctIndex: 0,
-        explanation: "Cu2+とO2-からなる黒色粉末です。"
+        explanation: "Cu<sup>2+</sup>とO<sup>2-</sup>からなる黒色粉末です。"
     },
     {
         id: 151,
         text: "塩化鉄(III)の化学式は？",
         type: "text",
-        options: ["FeCl3", "FeCl2", "Fe3Cl", "FeCl"],
+        options: ["FeCl<sub>3</sub>", "FeCl<sub>2</sub>", "Fe3Cl", "FeCl"],
         correctIndex: 0,
-        explanation: "Fe3+とCl-が1:3で結合します。"
+        explanation: "Fe<sup>3+</sup>とCl<sup>-</sup>が1:3で結合します。"
     },
     {
         id: 152,
         text: "硫化水素の化学式は？",
         type: "text",
-        options: ["H2S", "HS", "H2SO4", "HS2"],
+        options: ["H<sub>2</sub>S", "HS", "H<sub>2</sub>SO<sub>4</sub>", "HS2"],
         correctIndex: 0,
         explanation: "腐卵臭のある気体です。共有結合分子ですが、イオンの価数と同様に考えられます。"
     },
@@ -1021,7 +1021,7 @@ const QUESTION_DATA = [
     // --- その他補充問題 ---
     {
         id: 153,
-        text: "カリウムイオン(K+)の電子配置はどの希ガスと同じか？",
+        text: "カリウムイオン(K<sup>+</sup>)の電子配置はどの希ガスと同じか？",
         type: "text",
         options: ["アルゴン(Ar)", "ネオン(Ne)", "クリプトン(Kr)", "ヘリウム(He)"],
         correctIndex: 0,
@@ -1029,7 +1029,7 @@ const QUESTION_DATA = [
     },
     {
         id: 154,
-        text: "酸化物イオン(O2-)の電子配置はどの希ガスと同じか？",
+        text: "酸化物イオン(O<sup>2-</sup>)の電子配置はどの希ガスと同じか？",
         type: "text",
         options: ["ネオン(Ne)", "アルゴン(Ar)", "ヘリウム(He)", "クリプトン(Kr)"],
         correctIndex: 0,
@@ -1065,11 +1065,11 @@ const QUESTION_DATA = [
         type: "text",
         options: ["無極性分子", "極性分子", "高分子", "イオン結晶"],
         correctIndex: 0,
-        explanation: "メタン(CH4)や二酸化炭素(CO2)などがその例です。"
+        explanation: "メタン(CH<sub>4</sub>)や二酸化炭素(CO<sub>2</sub>)などがその例です。"
     },
     {
         id: 159,
-        text: "水分子(H2O)は極性分子か、無極性分子か？",
+        text: "水分子(H<sub>2</sub>O)は極性分子か、無極性分子か？",
         type: "text",
         options: ["極性分子", "無極性分子", "イオン結晶", "金属結晶"],
         correctIndex: 0,
@@ -1077,7 +1077,7 @@ const QUESTION_DATA = [
     },
     {
         id: 160,
-        text: "二酸化炭素(CO2)は極性分子か、無極性分子か？",
+        text: "二酸化炭素(CO<sub>2</sub>)は極性分子か、無極性分子か？",
         type: "text",
         options: ["無極性分子", "極性分子", "共有結合結晶", "イオン結晶"],
         correctIndex: 0,

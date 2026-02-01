@@ -282,6 +282,24 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    line-height: 1.4;
+    /* Ensure line height allows for sub/sup */
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
 }
 
 .option-btn:hover {
