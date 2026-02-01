@@ -1,0 +1,240 @@
+:root {
+    --primary-color: #6a1b9a;
+    --primary-light: #9c4dcc;
+    --accent-color: #ff9800;
+    --bg-color: #f3e5f5; /* Light purple tint */
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --correct-color: #4caf50;
+    --wrong-color: #f44336;
+    --font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: var(--card-bg);
+    max-width: 600px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+header p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.screen {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Start Screen */
+.illustration {
+    font-size: 5rem;
+    margin: 20px 0;
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn.primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(106, 27, 154, 0.3);
+}
+
+.btn.primary:hover {
+    background-color: var(--primary-light);
+}
+
+.btn.secondary {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+}
+
+/* Quiz Screen */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    background-color: var(--primary-light);
+    width: 0%; /* JS will update this */
+    transition: width 0.3s ease;
+}
+
+.question-header {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#question-text {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.choice-btn {
+    background-color: #f5f5f5;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-family);
+    text-align: left;
+    position: relative;
+}
+
+.choice-btn:hover:not(:disabled) {
+    background-color: #e1bee7;
+    border-color: var(--primary-light);
+}
+
+.choice-btn.correct {
+    background-color: #e8f5e9;
+    border-color: var(--correct-color);
+    color: var(--correct-color);
+}
+
+.choice-btn.wrong {
+    background-color: #ffebee;
+    border-color: var(--wrong-color);
+    color: var(--wrong-color);
+}
+
+/* Feedback Area */
+.feedback {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    border: 1px dashed #ccc;
+    text-align: left;
+}
+
+.feedback.hidden {
+    display: none;
+}
+
+#feedback-icon {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#explanation-box {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #555;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.label {
+    font-weight: bold;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 5px;
+}
+
+#next-btn {
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* Result Screen */
+.score-display {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+#result-message {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+footer {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    
+    #question-text {
+        font-size: 1.1rem;
+    }
+}

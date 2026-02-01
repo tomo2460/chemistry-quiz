@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化学基礎クイズ - 物質の構成</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>化学基礎クイズ</h1>
+            <p>〜物質の構成〜</p>
+        </header>
+
+        <main id="app">
+            <!-- Start Screen -->
+            <div id="start-screen" class="screen active">
+                <div class="illustration">🧪</div>
+                <p>高校化学基礎の範囲から、<br>原子・イオン・結合に関する問題を出題します！</p>
+                <p>全10問</p>
+                <button id="start-btn" class="btn primary">スタート！</button>
+            </div>
+
+            <!-- Quiz Screen -->
+            <div id="quiz-screen" class="screen">
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+                <div class="question-header">
+                    <span id="question-number">Q.1</span>
+                </div>
+                <h2 id="question-text">ここに問題文が表示されます。</h2>
+                <div id="choices-container" class="choices">
+                    <!-- Buttons will be injected here -->
+                </div>
+                <div id="feedback" class="feedback hidden">
+                    <div id="feedback-icon"></div>
+                    <p id="feedback-text"></p>
+                    <div id="explanation-box">
+                        <span class="label">解説:</span>
+                        <p id="explanation-text"></p>
+                    </div>
+                    <button id="next-btn" class="btn secondary">次へ</button>
+                </div>
+            </div>
+
+            <!-- Result Screen -->
+            <div id="result-screen" class="screen">
+                <h2>結果発表！</h2>
+                <div class="score-display">
+                    <span id="score-count">0</span> / <span id="total-count">0</span> 問正解
+                </div>
+                <p id="result-message">メッセージ</p>
+                <button id="restart-btn" class="btn primary">もう一度挑戦</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 High School Chemistry Quiz</p>
+        </footer>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
