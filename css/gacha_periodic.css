@@ -1,0 +1,333 @@
+/* ==================== Gacha Screen Styles ==================== */
+
+.gacha-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+}
+
+.gacha-card {
+    width: 280px;
+    height: 380px;
+    perspective: 1000px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-front {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: rotateY(0deg);
+}
+
+.card-back {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    transform: rotateY(180deg);
+}
+
+.gacha-card.flipped .card-front {
+    animation: flipFront 1s forwards;
+}
+
+.gacha-card.flipped .card-back {
+    animation: flipBack 1s forwards;
+}
+
+@keyframes flipFront {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(180deg);
+    }
+}
+
+@keyframes flipBack {
+    0% {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+.mystery-icon {
+    font-size: 120px;
+    color: rgba(255, 255, 255, 0.8);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+}
+
+.card-sparkle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+    animation: sparkle 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.element-symbol {
+    font-size: 80px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.element-number {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: -10px;
+}
+
+.element-name {
+    font-size: 28px;
+    color: #fff;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.element-item {
+    font-size: 60px;
+    margin-top: 20px;
+}
+
+.element-item-name {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 10px;
+}
+
+.gacha-trivia {
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    max-width: 320px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.gacha-message {
+    font-size: 18px;
+    color: var(--primary-dark);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.gacha-titles {
+    font-size: 14px;
+    color: #ff6b9d;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* レアリティエフェクト */
+.gacha-card.rarity-common .card-back {
+    background: linear-gradient(135deg, #b5ead7, #8ac6d1);
+}
+
+.gacha-card.rarity-rare .card-back {
+    background: linear-gradient(135deg, #a2d9ff, #667eea);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+}
+
+.gacha-card.rarity-epic .card-back {
+    background: linear-gradient(135deg, #f093fb, #764ba2);
+    box-shadow: 0 0 30px rgba(240, 147, 251, 0.8);
+    animation: epicGlow 2s infinite;
+}
+
+.gacha-card.rarity-legendary .card-back {
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 1);
+    animation: legendaryRainbow 3s infinite;
+}
+
+@keyframes epicGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 30px rgba(240, 147, 251, 0.8);
+    }
+
+    50% {
+        box-shadow: 0 0 50px rgba(240, 147, 251, 1);
+    }
+}
+
+@keyframes legendaryRainbow {
+    0% {
+        box-shadow: 0 0 40px rgba(255, 0, 0, 1);
+    }
+
+    25% {
+        box-shadow: 0 0 40px rgba(255, 215, 0, 1);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(0, 255, 0, 1);
+    }
+
+    75% {
+        box-shadow: 0 0 40px rgba(0, 100, 255, 1);
+    }
+
+    100% {
+        box-shadow: 0 0 40px rgba(255, 0, 255, 1);
+    }
+}
+
+/* ==================== Periodic Table Styles ==================== */
+
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 4px;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
+}
+
+.element-cell {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    font-size: 11px;
+    border: 2px solid transparent;
+}
+
+.element-cell.locked {
+    background: #e0e0e0;
+    color: #999;
+    cursor: default;
+}
+
+.element-cell.unlocked {
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.element-cell.unlocked:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.element-cell .symbol {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.element-cell .number {
+    font-size: 10px;
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    opacity: 0.8;
+}
+
+.element-cell .name {
+    font-size: 9px;
+    opacity: 0.9;
+    margin-top: 2px;
+}
+
+/* 元素分類別の色（unlocked時に適用） */
+.element-cell.unlocked.category-nonmetal {
+    background: linear-gradient(135deg, #b5ead7, #8ac6d1);
+    color: #2d5a5a;
+}
+
+.element-cell.unlocked.category-metal {
+    background: linear-gradient(135deg, #c7ceea, #a2d9ff);
+    color: #2d4a6a;
+}
+
+.element-cell.unlocked.category-metalloid {
+    background: linear-gradient(135deg, #e8d5b7, #d4af37);
+    color: #5a4a2a;
+}
+
+.element-cell.unlocked.category-noble_gas {
+    background: linear-gradient(135deg, #dda0dd, #c8a2c8);
+    color: #5a2d5a;
+}
+
+.element-cell.unlocked.category-halogen {
+    background: linear-gradient(135deg, #ff9aa2, #ffb7b2);
+    color: #6a2d2d;
+}
+
+.element-cell.unlocked.category-transition {
+    background: linear-gradient(135deg, #ffdac1, #ffb088);
+    color: #6a3d2a;
+}
+
+.element-cell.unlocked.category-lanthanide {
+    background: linear-gradient(135deg, #f0e68c, #daa520);
+    color: #5a4a1a;
+}
+
+.element-cell.unlocked.category-actinide {
+    background: linear-gradient(135deg, #ff6b9d, #c44569);
+    color: #6a1a2a;
+}
+
+/* 空白セル */
+.element-cell.empty {
+    background: transparent;
+    border: none;
+    cursor: default;
+}

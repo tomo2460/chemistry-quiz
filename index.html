@@ -2,15 +2,6 @@
 <html lang="ja">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D6EN9Q7DVM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-D6EN9Q7DVM');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>化学基礎マスター：物質の構成</title>
@@ -56,6 +47,7 @@
                 <button id="q-list-btn" class="sub-btn" style="background:#b5ead7; color:#444;">問題リストから選択</button>
             </div>
             <button id="collection-btn" class="sub-btn">称号図鑑</button>
+            <button id="periodic-table-btn" class="sub-btn" style="background:#c8a2c8; color:#fff;">元素図鑑 📊</button>
         </div>
 
         <!-- Quiz Screen -->
@@ -129,8 +121,56 @@
                 <p class="new-title-label">NEW TITLE!</p>
                 <div id="new-title-display" class="title-card"></div>
             </div>
+            <!-- 全問正解時のガチャボタン -->
+            <button id="gacha-btn" class="main-btn hidden"
+                style="background: linear-gradient(135deg, #ffd700, #ffaa00); animation: pulse 1.5s infinite;">🎁
+                元素を獲得する！</button>
             <button id="retry-btn" class="main-btn">もう一度遊ぶ</button>
             <button id="home-btn" class="sub-btn">タイトルへ</button>
+        </section>
+
+        <!-- Gacha Screen (元素獲得演出) -->
+        <section id="gacha-screen" class="screen hidden">
+            <div class="gacha-container">
+                <div class="gacha-card" id="gacha-card">
+                    <div class="card-front">
+                        <div class="card-sparkle"></div>
+                        <div class="mystery-icon">?</div>
+                    </div>
+                    <div class="card-back">
+                        <img id="gacha-image" class="gacha-card-image hidden" src="" alt="Element Card">
+                        <div id="gacha-text-content">
+                            <div class="element-symbol" id="gacha-symbol">H</div>
+                            <div class="element-number" id="gacha-number">1</div>
+                            <div class="element-name" id="gacha-name">水素</div>
+                            <div class="element-item" id="gacha-item">🚀</div>
+                            <div class="element-item-name" id="gacha-item-name">ロケット燃料</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gacha-trivia" id="gacha-trivia">
+                    宇宙へ飛ぶための最強のエネルギー源！
+                </div>
+
+                <div class="gacha-titles" id="gacha-titles"></div>
+                <button id="gacha-close-btn" class="main-btn">閉じる</button>
+            </div>
+        </section>
+
+        <!-- Periodic Table Screen (周期表コレクション) -->
+        <section id="periodic-table-screen" class="screen hidden">
+            <div class="collection-header">
+                <h2>元素図鑑 <span id="collection-progress" style="font-size:0.9rem; margin-left:10px;">0/118</span></h2>
+                <button id="periodic-back-btn" class="icon-btn">✕</button>
+            </div>
+            <div class="periodic-legend" style="text-align:center; font-size:0.75rem; margin-bottom:15px; color:#666;">
+                <span style="background:#ddd; padding:3px 6px; border-radius:3px; margin:0 3px;">未獲得</span>
+                <span
+                    style="background:var(--primary); color:#fff; padding:3px 6px; border-radius:3px; margin:0 3px;">獲得済み</span>
+            </div>
+            <div id="periodic-table" class="periodic-table">
+                <!-- 周期表がJSで生成される -->
+            </div>
         </section>
 
         <!-- Collection Screen -->
@@ -143,8 +183,26 @@
                 <!-- Titles injected here -->
             </div>
         </section>
+
+        <!-- Element Detail Modal -->
+        <div id="element-detail-modal" class="modal-overlay hidden">
+            <div class="element-modal-content">
+                <button id="modal-close-btn" class="modal-close-btn">✕</button>
+                <div id="element-detail-body">
+                    <img id="detail-image" src="" alt="Element Card" class="element-card-image hidden">
+                    <div class="element-detail-info">
+                        <h3 id="detail-name">Element Name</h3>
+                        <div id="detail-item-name" class="element-detail-item">Item Name</div>
+                        <div id="detail-trivia" class="element-detail-trivia">Trivia text goes here.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <script src="js/elements.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/gacha.js"></script>
     <script src="js/data.js"></script>
     <script src="js/visuals.js"></script>
     <script src="js/app.js"></script>

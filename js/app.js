@@ -33,7 +33,9 @@ const App = {
             quiz: document.getElementById('quiz-screen'),
             result: document.getElementById('result-screen'),
             collection: document.getElementById('collection-screen'),
-            questionList: document.getElementById('question-list-screen') // New Screen
+            questionList: document.getElementById('question-list-screen'), // New Screen
+            gacha: document.getElementById('gacha-screen'),
+            periodicTable: document.getElementById('periodic-table-screen')
         },
         buttons: {
             // start: document.getElementById('start-btn'), // Old button
@@ -43,7 +45,11 @@ const App = {
             home: document.getElementById('home-btn'),
             retryResult: document.getElementById('retry-btn'),
             back: document.getElementById('back-btn'),
-            next: document.getElementById('next-btn')
+            next: document.getElementById('next-btn'),
+            gachaBtn: document.getElementById('gacha-btn'),
+            periodicTableBtn: document.getElementById('periodic-table-btn'),
+            gachaCloseBtn: document.getElementById('gacha-close-btn'),
+            periodicBackBtn: document.getElementById('periodic-back-btn')
         },
         quiz: {
             progressText: document.getElementById('progress-text'),
@@ -155,8 +161,16 @@ const App = {
             }
         });
 
+        buttons.home.addEventListener('click', () => App.switchScreen('title'));
+        buttons.next.addEventListener('click', () => App.nextQuestion());
         buttons.back.addEventListener('click', () => App.switchScreen('title'));
-        buttons.next.addEventListener('click', () => App.nextQuestion()); // feedback next
+
+
+        // ガチャ・元素コレクション関連
+        buttons.gachaBtn.addEventListener('click', () => App.executeGacha());
+        buttons.periodicTableBtn.addEventListener('click', () => App.showPeriodicTable());
+        buttons.gachaCloseBtn.addEventListener('click', () => App.closeGacha());
+        buttons.periodicBackBtn.addEventListener('click', () => App.switchScreen('title')); // feedback next
     },
 
     switchScreen: (screenName) => {
@@ -168,10 +182,14 @@ const App = {
         });
 
         const target = App.elements.screens[screenName];
-        target.classList.remove('hidden');
-        setTimeout(() => {
-            target.classList.add('active');
-        }, 50);
+        if (target) {
+            target.classList.remove('hidden');
+            // Force reflow
+            void target.offsetWidth;
+            setTimeout(() => {
+                target.classList.add('active');
+            }, 50);
+        }
     },
 
     startQuiz: (countOrIds) => {
@@ -181,19 +199,21 @@ const App = {
             const pool = QUESTION_DATA.filter(q => countOrIds.includes(q.id));
             App.state.questions = pool.sort(() => 0.5 - Math.random()); // Shuffle selected too
             App.state.isSelectionMode = true;
+            // Preserve selection for retry
+            App.state.selectedQuestionIds = [...countOrIds];
         } else {
             // Normal Count Mode
             App.state.targetQuestionCount = countOrIds;
             const shuffledPool = [...QUESTION_DATA].sort(() => 0.5 - Math.random());
             App.state.questions = shuffledPool.slice(0, countOrIds);
             App.state.isSelectionMode = false;
+            App.state.selectedQuestionIds = [];
         }
 
         App.state.isRetryMode = false;
         App.state.retryQueue = [];
         App.state.correctCount = 0;
         App.state.currentQuestionIndex = 0;
-        App.state.selectedQuestionIds = [];
 
         // Reset Logic Vars
         App.state.currentRunStreak = 0;
@@ -417,9 +437,10 @@ const App = {
         result.scoreVal.textContent = `${App.state.correctCount} / ${App.state.targetQuestionCount}`;
         const mins = Math.floor(timeSeconds / 60).toString().padStart(2, '0');
         const secs = (timeSeconds % 60).toString().padStart(2, '0');
-        result.timeVal.textContent = `${mins}:${secs}`;
 
-        if (gainedTitles.length > 0) {
+        if (gainedTitles
+
+            .length > 0) {
             result.newTitleContainer.classList.remove('hidden');
             result.newTitleDisplay.innerHTML = gainedTitles.map(t =>
                 `<div><strong style="color:var(--primary-dark)">${t.name}</strong><br><small>${t.desc}</small></div>`
@@ -429,12 +450,12 @@ const App = {
         }
 
         App.switchScreen('result');
+        App.checkPerfectScore();
     },
 
     showCollection: () => {
         const { collection } = App.elements;
         collection.grid.innerHTML = '';
-        // Use a new class for card layout if not already present, or style existing one
         collection.grid.className = 'collection-grid card-mode';
 
         TITLES.forEach(t => {
@@ -443,7 +464,6 @@ const App = {
             const card = document.createElement('div');
             card.className = `title-card-item ${isUnlocked ? 'unlocked' : 'locked'}`;
 
-            // Card Image
             const imgFrame = document.createElement('div');
             imgFrame.className = 'card-frame';
             const img = document.createElement('img');
@@ -451,7 +471,6 @@ const App = {
             img.className = 'card-img';
             imgFrame.appendChild(img);
 
-            // Card Info
             const info = document.createElement('div');
             info.className = 'card-info';
             info.innerHTML = `
@@ -465,6 +484,210 @@ const App = {
         });
 
         App.switchScreen('collection');
+    },
+
+    // ==================== 元素コレクション機能 ====================
+
+    checkPerfectScore: () => {
+        const { correctCount, questions } = App.state;
+        const isPerfect = correctCount === questions.length;
+
+        const gachaBtn = document.getElementById('gacha-btn');
+        if (isPerfect && gachaBtn) {
+            gachaBtn.classList.remove('hidden');
+        }
+    },
+
+    executeGacha: () => {
+        const result = Gacha.executeGacha();
+
+        if (!result.success) {
+            alert(result.message);
+            return;
+        }
+
+        App.showGachaAnimation(result.element, result.newTitles);
+    },
+
+    showGachaAnimation: (element, newTitles) => {
+        App.switchScreen('gacha');
+
+        const card = document.getElementById('gacha-card');
+        const symbol = document.getElementById('gacha-symbol');
+        const number = document.getElementById('gacha-number');
+        const name = document.getElementById('gacha-name');
+        const item = document.getElementById('gacha-item');
+        const itemName = document.getElementById('gacha-item-name');
+        const trivia = document.getElementById('gacha-trivia');
+        const titlesDiv = document.getElementById('gacha-titles');
+
+        const gachaImage = document.getElementById('gacha-image');
+        const textContent = document.getElementById('gacha-text-content');
+
+        // Text Content Setup
+        symbol.textContent = element.symbol;
+        number.textContent = element.number;
+        name.textContent = element.name;
+        item.textContent = element.item;
+        itemName.textContent = element.itemName;
+        trivia.textContent = element.trivia;
+
+        card.className = 'gacha-card rarity-' + element.rarity;
+
+        const cardBack = card.querySelector('.card-back');
+        const colorScheme = CATEGORY_COLORS[element.category];
+        if (colorScheme) {
+            cardBack.style.background = colorScheme.bg;
+            cardBack.style.color = colorScheme.text;
+        }
+
+        // Image Handling
+        if (element.image) {
+            gachaImage.src = element.image;
+            gachaImage.classList.remove('hidden');
+            textContent.classList.add('hidden'); // Hide text when image is present
+            // Reset background for image card (optional, but good to avoid bleed)
+            cardBack.style.background = '#000';
+        } else {
+            gachaImage.src = '';
+            gachaImage.classList.add('hidden');
+            textContent.classList.remove('hidden');
+        }
+
+        if (newTitles && newTitles.length > 0) {
+            titlesDiv.innerHTML = '🎊 新しい称号を獲得！<br>' + newTitles.join(', ');
+        } else {
+            titlesDiv.innerHTML = '';
+        }
+
+        setTimeout(() => {
+            card.classList.add('flipped');
+        }, 500);
+
+        App.updateMascot('happy');
+    },
+
+    closeGacha: () => {
+        Storage.markElementsAsViewed();
+        App.switchScreen('result');
+        App.updateMascot('normal');
+
+        const gachaBtn = document.getElementById('gacha-btn');
+        if (gachaBtn) {
+            gachaBtn.classList.add('hidden');
+        }
+    },
+
+    showPeriodicTable: () => {
+        App.renderPeriodicTable();
+        App.switchScreen('periodicTable');
+    },
+
+    renderPeriodicTable: () => {
+        console.log('App.renderPeriodicTable called');
+        const table = document.getElementById('periodic-table');
+        if (!table) {
+            console.error('Error: periodic-table element not found');
+            return;
+        }
+
+        const collectedElements = Storage.getCollectedElements();
+        console.log('Collected elements:', collectedElements);
+
+        const collectedSet = new Set(collectedElements);
+        const progress = Storage.getCollectionProgress();
+
+        const progressSpan = document.getElementById('collection-progress');
+        if (progressSpan) {
+            progressSpan.textContent = `${progress.collected}/118 (${progress.percentage}%)`;
+        }
+
+        const periodicLayout = [
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+            [3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 7, 8, 9, 10],
+            [11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 15, 16, 17, 18],
+            [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54],
+            [55, 56, 0, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86],
+            [87, 88, 0, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 0],
+            [0, 0, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 0]
+        ];
+
+        table.innerHTML = '';
+        let cellCount = 0;
+
+        periodicLayout.forEach(row => {
+            row.forEach(atomicNumber => {
+                const cell = document.createElement('div');
+
+                if (atomicNumber === 0) {
+                    cell.className = 'element-cell empty';
+                } else {
+                    const element = ELEMENTS.find(e => e.number === atomicNumber);
+                    if (!element) {
+                        console.warn(`Element data missing for number ${atomicNumber}`);
+                        return;
+                    }
+
+                    const isUnlocked = collectedSet.has(atomicNumber);
+
+                    cell.className = `element-cell ${isUnlocked ? 'unlocked' : 'locked'}`;
+                    if (isUnlocked) {
+                        cell.classList.add('category-' + element.category);
+                    }
+
+                    cell.innerHTML = `
+                        <div class="number">${atomicNumber}</div>
+                        <div class="symbol">${isUnlocked ? element.symbol : '?'}</div>
+                        <div class="name">${isUnlocked ? element.name : '???'}</div>
+                    `;
+
+                    if (isUnlocked) {
+                        cell.onclick = () => {
+                            App.showElementDetail(element);
+                        };
+                    }
+                }
+
+                table.appendChild(cell);
+            });
+        });
+    },
+
+    showElementDetail: (element) => {
+        const modal = document.getElementById('element-detail-modal');
+        const img = document.getElementById('detail-image');
+        const name = document.getElementById('detail-name');
+        const itemName = document.getElementById('detail-item-name');
+        const trivia = document.getElementById('detail-trivia');
+        const closeBtn = document.getElementById('modal-close-btn');
+
+        name.textContent = `${element.number}. ${element.name} (${element.symbol})`;
+        itemName.textContent = `関連アイテム: ${element.itemName}`;
+        trivia.textContent = element.trivia;
+
+        if (element.image) {
+            img.src = element.image;
+            img.classList.remove('hidden');
+        } else {
+            img.src = '';
+            img.classList.add('hidden');
+        }
+
+        modal.classList.remove('hidden');
+
+        // Close handlers
+        closeBtn.onclick = App.closeElementDetail;
+        modal.onclick = (e) => {
+            if (e.target === modal) App.closeElementDetail();
+        };
+    },
+
+    closeElementDetail: () => {
+        const modal = document.getElementById('element-detail-modal');
+        modal.classList.add('hidden');
     }
 };
 

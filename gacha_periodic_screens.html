@@ -1,0 +1,42 @@
+<!-- Gacha Screen (元素獲得演出) -->
+<section id="gacha-screen" class="screen hidden">
+    <div class="gacha-container">
+        <div class="gacha-card" id="gacha-card">
+            <div class="card-front">
+                <div class="card-sparkle"></div>
+                <div class="mystery-icon">?</div>
+            </div>
+            <div class="card-back">
+                <div class="element-symbol" id="gacha-symbol">H</div>
+                <div class="element-number" id="gacha-number">1</div>
+                <div class="element-name" id="gacha-name">水素</div>
+                <div class="element-item" id="gacha-item">🚀</div>
+                <div class="element-item-name" id="gacha-item-name">ロケット燃料</div>
+            </div>
+        </div>
+        <div class="gacha-trivia" id="gacha-trivia">
+            宇宙へ飛ぶための最強のエネルギー源！
+        </div>
+        <div class="gacha-message" id="gacha-message">
+            電子くん「新しい元素を見つけたよ！」
+        </div>
+        <div class="gacha-titles" id="gacha-titles"></div>
+        <button id="gacha-close-btn" class="main-btn">閉じる</button>
+    </div>
+</section>
+
+<!-- Periodic Table Screen (周期表コレクション) -->
+<section id="periodic-table-screen" class="screen hidden">
+    <div class="collection-header">
+        <h2>元素図鑑 <span id="collection-progress" style="font-size:0.9rem; margin-left:10px;">0/118</span></h2>
+        <button id="periodic-back-btn" class="icon-btn">✕</button>
+    </div>
+    <div class="periodic-legend" style="text-align:center; font-size:0.75rem; margin-bottom:15px; color:#666;">
+        <span style="background:#ddd; padding:3px 6px; border-radius:3px; margin:0 3px;">未獲得</span>
+        <span
+            style="background:var(--primary); color:#fff; padding:3px 6px; border-radius:3px; margin:0 3px;">獲得済み</span>
+    </div>
+    <div id="periodic-table" class="periodic-table">
+        <!-- 周期表がJSで生成される -->
+    </div>
+</section>
