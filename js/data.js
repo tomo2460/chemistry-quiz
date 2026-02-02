@@ -1013,7 +1013,7 @@ const QUESTION_DATA = [
         id: 152,
         text: "硫化水素の化学式は？",
         type: "text",
-        options: ["H<sub>2</sub>S", "HS", "H<sub>2</sub>SO<sub>4</sub>", "HS2"],
+        options: ["H<sub>2</sub>S", "HS", "H<sub>2</sub>SO<sub>4</sub>", "HS<sub>2</sub>"],
         correctIndex: 0,
         explanation: "腐卵臭のある気体です。共有結合分子ですが、イオンの価数と同様に考えられます。"
     },
